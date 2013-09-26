@@ -1,0 +1,25 @@
+{{>header}}
+<div class="container">
+<h1>Contact</h1>
+You can email/jabber/google talk me at<br>
+<img id="contact-mail" src="images/mymail.png" alt="admin{at}rwky{dot}net"><br>
+Or you can fill in the form below: 
+<br><em>Note:</em> if you use google apps with google chat you must enable external access by following <a href="http://www.google.com/support/a/bin/answer.py?answer=34143" target="_blank">these instructions</a><br>
+If you need a client to use google chat/xmpp try <a href="http://www.pidgin.im/" target="_blank">http://www.pidgin.im/</a><br /><br>
+{{#msg}}
+<div class="alert alert-success">{{msg}}</div>
+{{/msg}}
+{{#err}}
+<div class="alert alert-danger">{{err}}</div>
+{{/err}}
+<form role="form" action="/contact" method="post">
+<label for="contact-email">Email Address</label> <input id="contact-email" required="required" type="email" name="email" class="form-control" placeholder="Enter email"><br>
+<label for="contact-message">Message</label> <textarea id="contact-message" required="required" name="message" class="form-control"></textarea><br>
+<button type="submit" class="btn btn-primary">Send</button>
+<input type="hidden" name="_csrf" value="{{csrf}}">
+</form>
+<br>
+<a class="twitter-timeline"  href="https://twitter.com/rwky_"  data-widget-id="308998269298675712">Tweets by @rwky_</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+{{>footer}}

@@ -1,0 +1,11 @@
+{{>header}}
+<div class="container">
+<h1>Privacy Policy</h1>
+<h2>Data collection</h2>
+<p>I collect personal information including but not limited to full name, address, email address, and IP address.<br>
+Data is protected using industry standard techniques including but not limited to database encryption, multi factor authentication and key based authentication.</p>
+<h2>Third party disclosure</h2>
+<p>I do not disclose or sell personal information to third parties without prior permission.
+</p><p>I cannot be held responsible for any leaking of personal information via any means.</p>
+</div>
+{{>footer}}

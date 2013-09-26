@@ -1,0 +1,87 @@
+{{>header}}
+<div class="page-header">
+<h1>Server Administration</h1>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+<h4>Server administration</h4>
+<ul>
+<li>Keep your server running smoothly</li>
+<li>Software installation, upgrades and configuration</li>
+<li>Log file analysis</li>
+<li>Internal server monitoring</li>
+<li>Performance tuning</li>
+<li>Security audit</li>
+<li>From &pound;75 per month</li>
+</ul>
+</div>
+<div class="col-md-3">			
+<h4>Server administration extras</h4>
+<ul>
+<li>Add any of the following to your server support.</li>
+<li>Off site backups validated regularly, from &pound;50 per month</li>
+<li>External server monitoring, from &pound;1.50 per month</li>
+<li>3rd party software maintenance (i.e. Wordpress, Drupal etc), from &pound;10 per month</li>
+<li>SSL certificate, from FREE</li>
+<li>Domain registration, from FREE</li>
+</ul>
+</div>
+<div class="col-md-3">
+<h4>Server setup</h4>
+<ul>
+<li>Initial server setup and hardening</li>
+<li>Server and/or website migration</li>
+<li>User creation</li>
+<li>Software installation</li>
+<li>Website uploading</li>
+<li>IPv6 configuration</li>
+<li>Server Hardening</li>
+<li>Google Apps integration</li>
+<li>SSL installation &amp; configuration</li>
+<li>Domain registration</li>
+<li>One month inclusive administration</li>
+<li>From &pound;150</li>
+</ul>
+</div>
+<div class="col-md-3">
+<h4>Server hardening</h4>
+<ul>
+<li>Sleep tight knowing your server is secure.</li>
+<li>Kernel &amp; Software updates</li>
+<li>Firewall installation and configuration</li>
+<li>Securing vulnerable services</li>
+<li>Restrict unprivileged user access</li>
+<li>SSL installation &amp; configuration</li>
+<li>And more from &pound;150</li>
+</ul>
+</div>
+</div><div class="row">
+<div class="col-md-3">           
+<h4>Per incident support</h4>
+<ul>
+<li>Solutions for any server problem</li>
+<li>&pound;25 per hour</li>
+</ul>
+</div>
+<div class="col-md-3">
+<h4>High availability setup</h4>
+<ul>
+<li>IP Failover setup</li>
+<li>MySQL replication</li>
+<li>GlusterFS configuration</li>
+<li>Automatic synchronization of file systems</li>
+<li>Cross Datacentre Failover</li>
+<li><a href="/contact">Contact</a> for pricing.</li>
+</ul>
+</div>
+<div class="col-md-3">
+<h4>Managed server clusters</h4>
+<ul>
+<li>Need more than a single server?</li>
+<li><a href="/contact">Contact</a> for pricing.</li>
+</ul>
+</div>
+</div>
+</div>
+{{>footer}}

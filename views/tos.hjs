@@ -1,0 +1,59 @@
+{{>header}}
+<div class="container">
+<h1>Terms of Service</h1>
+<h2>Quotes &amp; Consultation</h2>
+<p>
+Quotes and consultations are given free of charge via email.</p>
+<p>Once a quote has been agreed on it will not change, additional quotes can be raised for additional work or if the originally quoted work specification changes.</p>
+<p>If any changes to the original specification change or additional work are required then the client will be informed of the extra cost and time required to complete the work and must agree to the new quote before work starts.
+</p>
+<h2>Time Scales</h2>
+<p>I will endeavour to reply to all emails within 24 hours Monday to Friday GMT. E-mails that require investigation or software writing may take longer. Status updates may be requested at any time by the client</p>
+<p>
+I will endeavour to meet all deadlines. This does not guarantee that deadlines will be met. Changes in the specification, slow response time from the client, or unforeseen circumstances may prevent deadlines being met.</p>
+<p>No refund will be given if a deadline is not met.</p>
+
+<h2>Service Levels</h2>
+<p>I do not provide any Service Level Agreement (SLA). However I do endeavour to resolve any issues you may have with software or servers within 24 hours. This is not a guarantee.</p>
+<h2>Fees</h2>
+<p>
+Quotes will be written in a fixed format for a fixed amount of work. Once quoted the quote will not change. The client will not be given unexpected costs. All fees will be clearly stated upon quotation.</p>
+<p>
+Additional quotes may be raised for additional work or non-trivial changes in the original quote specification. A change will be judged on if it is non-trivial by myself. If I feel the change is non-trivial I will notify the client of the cost and time scale impacts of the change. Trivial changes will be included into the original quote at no extra time scale and cost.</p>
+<p>
+Fees are payable upon completion either via Paypal, Credit Card or Bank Transfer. Payment method will be specified at the time of writing the quote.</p>
+<p>
+For large pieces of work I may request partial payments up front or split the work into separate quotes to be paid as work progresses. The client will be notified prior to work starting if this is the case.</p>
+<p>
+For rolling Monthly contracts a set fee for all reasonable work performed in a month can be arranged which is to be paid at the end of each Month. Or a variable rate can be set, which reflects the amount of work done, can be arranged. If the variable rate is chosen two or more Month's work may be combined into a single quote if the work for those Months is minor.</p>
+<p>
+For monthly server administration the agreed fee must be paid up front in full.
+</p>
+<p>
+Additional fees for Web Hosting, Domain registration and other external costs are not included in quotes unless specified in the quote.</p>
+
+<h2>Copyright</h2>
+<p>
+I will retain copyright on all work until full payment is received from the client.</p>
+<p>Once payment is complete the client holds joint copyright. Any images or scripts not created by myself or the client remain with the copyright of the original holder.</p>
+<p>I reserve the right to use, reproduce and display in any context any part of the work passed onto the client.</p>
+
+<h2>Liability &amp; Warranty</h2>
+<p>
+In no event will the copyright holder or myself be liable for damages, include any general, special, incidental or consequential damages arising out of the use, inability to use, or any other related aspect of the work, (Including but not limited to, loss of data, data being rendered inaccurate, or losses sustained by the client or third parties, or a failure of the work to operate with any other works external or internal), even if such holder or other party has been advised of the possibility of such damages.
+</p>
+<p>
+I will endeavour to provide bug free services. Any bugs found will be fixed without charge. A bug is a defect in the work provided to the client. I reserve the right to declare what is reported as a bug to not be a bug.</p>
+<p>
+All work is provided "As Is" with no guarantee of operability with other software, future releases of software, different hosting environments or other changes in the original environment conditions. The client will be responsible for any servicing, repair or correction required if the original environment the work is held in, or the actual work changes, even if the client has no control over these changes.
+I may be hired to correct, repair, or service the work at which time a quote and time scale will be raised if deemed to be required by I.</p>
+<p>
+The client holds all risk as to the quality and performance of the work.
+The client holds all responsibility for approving the fitness of the work. The client holds all responsibility for testing the work to ensure it meets their needs. Once the client deems the work satisfactory for use the client may not subsequently deem it unsatisfactory, but may report bugs as noted above or request additional changes.
+</p>
+<b>By hiring or contacting myself you agree to these terms of service. These terms may be altered at any time without notification.</b><br>
+<br>
+If I am providing you with any third party services you must also abide by their Terms of Service.<br>
+With any other services provided through other third parties you must abide by their Terms of Service and Privacy Policies.
+</div>
+{{>footer}}
