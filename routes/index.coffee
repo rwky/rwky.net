@@ -74,17 +74,24 @@ module.exports = (app) ->
             'header':'header.hjs','footer':'footer.hjs'
             
     app.post '/contact',(req,res)->
+        msg='Email sent, you should receive a reply within 24 hours Monday to Friday.'
+        err=false
+        render = ()->
+            res.render 'contact',bodyClass:'contact',msg:msg,err:err,partials:
+                'header':'header.hjs','footer':'footer.hjs'
         ops =
             from:app.config.from_email
             to:app.config.to_email
             subject:'rwky.net contact form'
             text:'A message from '+req.body.email+"\r\n"+req.body.message
-        mailer.sendMail ops,(err)->
-            if err?
-                err='There was an error sending your mail, please try again'
-            else
-                msg='Email sent, you should receive a reply within 24 hours Monday to Friday.'
-            res.render 'contact',bodyClass:'contact',msg:msg,err:err,partials:
-                'header':'header.hjs','footer':'footer.hjs'
+        if req.body.name isnt '' or req.body.email is '' or req.body.message is ''
+            render()
+        else
+            mailer.sendMail ops,(err)->
+                if err?
+                    err='There was an error sending your mail, please try again'
+                    msg=false
+                render()
+            
             
     

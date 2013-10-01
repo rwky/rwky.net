@@ -36,6 +36,7 @@
 <form role="form" action="/contact" method="post">
 <label for="contact-email">Email Address</label> <input id="contact-email" required="required" type="email" name="email" class="form-control" placeholder="Enter email"><br>
 <label for="contact-message">Message</label> <textarea id="contact-message" required="required" name="message" class="form-control"></textarea><br>
+<input type="text" name="name" style="display:none">
 <button type="submit" class="btn btn-primary">Send</button>
 <input type="hidden" name="_csrf" value="{{csrf}}">
 </form>
