@@ -5,7 +5,7 @@
 </div>
 </div>
 <div class="container">
-<div class="col-sm-4 col-xs-6">
+<div class="col-sm-4">
 <h3>Server Administration</h3>
 <ul>
 <li>Server Setup</li>
@@ -18,7 +18,7 @@
 </ul><p>
 <a href="/server-administration" class="btn btn-primary">More details</a></p>
 </div>
-<div class="col-sm-4 col-xs-6">
+<div class="col-sm-4">
 <h3>Programming</h3>
 <ul>
 <li>Node.js</li>
@@ -31,7 +31,7 @@
 </ul><p>
 <a href="/programming" class="btn btn-primary">More details</a></p>
 </div>
-<div class="col-sm-4 col-xs-6">
+<div class="col-sm-4">
 <h3>Contact</h3>
 <form role="form" action="/contact" method="post">
 <label for="contact-email">Email Address</label> <input id="contact-email" required="required" type="email" name="email" class="form-control" placeholder="Enter email"><br>
