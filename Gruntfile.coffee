@@ -40,11 +40,10 @@ module.exports = (grunt) ->
                     
         nodemon:
             app :
+                script: 'app.js'
                 options:
-                    file: 'app.js'
-                    ignoredFiles: ['public/js/**','Gruntfile.coffee','views/**']
-                    watchedExtensions: ['js']
-                        
+                    ignored: ['public/js/**','Gruntfile.coffee','views/**']
+
         concurrent:
             target:
                 tasks: ['watch:scripts','watch:css','nodemon:app']
