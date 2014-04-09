@@ -75,6 +75,8 @@ module.exports = (app) ->
             
     app.post '/contact',(req,res)->
         msg='Email sent, you should receive a reply within 24 hours Monday to Friday.'
+        blockStrings = ['[/url]']
+        blocked = blockStrings.filter((el)-> req.body.message.indexOf(el) isnt -1).length
         err=false
         render = ()->
             res.render 'contact',bodyClass:'contact',msg:msg,err:err,partials:
@@ -84,7 +86,7 @@ module.exports = (app) ->
             to:app.config.to_email
             subject:'rwky.net contact form'
             text:'A message from '+req.body.email+"\r\n"+req.body.message
-        if req.body.name isnt '' or req.body.email is '' or req.body.message is ''
+        if req.body.name isnt '' or req.body.email is '' or req.body.message is '' or blocked
             render()
         else
             mailer.sendMail ops,(err)->
