@@ -5,12 +5,9 @@
 <div class="container">
 <h3>I contribute to the following open source projects:</h3>
 <ul>
-<li>Linode Bash API <a href="https://github.com/rwky/Linode-Bash-API" target="_blank">https://github.com/rwky/Linode-Bash-API</a></li>
-<li>Rwky Redis, a <a href="http://redis.io" target="_blank">Redis</a> library written in PHP <a href="https://github.com/rwky/Rwky-Redis" target="_blank">https://github.com/rwky/Rwky-Redis</a></li>
 <li>Redis Ubuntu Package <a href="https://launchpad.net/~rwky/+archive/redis" target="_blank">PPA</a></li>
 <li>Node.js Ubuntu Package <a href="https://launchpad.net/~rwky/+archive/nodejs" target="_blank">PPA</a></li>
-<li>Linode stack script <a href="http://www.linode.com/stackscripts/view/?StackScriptID=2471" target="_blank">For Ubuntu 10.04</a></li>
-<li>Linode stack script <a href="http://www.linode.com/stackscripts/view/?StackScriptID=4745" target="_blank">For Ubuntu 12.04</a></li>
+<li>Graphics Magick Ubuntu Package <a href="https://launchpad.net/~rwky/+archive/graphicsmagick" target="_blank">PPA</a></li>
 <li>Pingdom API for Node.js <a href="https://github.com/rwky/pingdom-api" target="_blank">https://github.com/rwky/pingdom-api</a></li>
 </ul>
 </div>
