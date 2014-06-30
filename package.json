@@ -6,7 +6,8 @@
             "express": "3.x",
             "hjs": "*",
             "nodemailer":"*",
-            "stripe":"*"
+            "stripe":"*",
+            "cookie-session":"*"
         },
         "devDependencies": {
             "grunt": "*",

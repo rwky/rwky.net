@@ -10,14 +10,12 @@ app.config = require './config'
 app.set "port", process.env.PORT or 3000
 app.set "views", __dirname + "/views"
 app.set "view engine", "hjs"
-app.use express.compress()
 if "development" is app.get("env")
     app.use express.logger("dev")
 else
     app.use express.logger()
 app.use express.urlencoded()
-app.use express.cookieParser(app.config.cookie)
-app.use express.cookieSession(secret:app.config.session)
+app.use require('cookie-session')(keys:[app.config.session],secureProxy:true)
 app.use express.csrf()
 app.use express.static(path.join(__dirname, "public"))
 app.use (req,res,next)->
