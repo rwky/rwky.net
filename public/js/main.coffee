@@ -3,6 +3,7 @@ $(->
     $('.nav a[href="'+window.location.pathname+'"]').parent().addClass 'active'
     
     $('#stripe-form').on 'submit',()->
+        $('#stripe-form button').prop('disabled',true).html('Processing..')
         if $(@).find('input[name="stripeToken"]').length is 0
             StripeCheckout.open({
               key:         'pk_live_iTNSQnZ1HnNMLzrx2oG3UIBc',
