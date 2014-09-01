@@ -90,8 +90,8 @@ module.exports = (app) ->
             render()
         else
             mailer.sendMail ops,(e)->
-                console.error e+' '+e.stack
                 if e?
+                    console.error e+' '+e.stack
                     err='There was an error sending your mail, please try again'
                     msg=false
                 render()
