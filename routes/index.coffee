@@ -1,5 +1,5 @@
 module.exports = (app) ->
-    mailer = require('nodemailer').createTransport('Sendmail','/usr/sbin/sendmail')    
+    mailer = require('nodemailer').createTransport require('nodemailer-sendmail-transport')()  
     stripe = require('stripe')(app.config.stripe)
     
     app.get '/',(req,res)->
@@ -89,8 +89,9 @@ module.exports = (app) ->
         if req.body.name isnt '' or req.body.email is '' or req.body.message is '' or blocked
             render()
         else
-            mailer.sendMail ops,(err)->
-                if err?
+            mailer.sendMail ops,(e)->
+                console.error e+' '+e.stack
+                if e?
                     err='There was an error sending your mail, please try again'
                     msg=false
                 render()
