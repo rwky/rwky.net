@@ -21,6 +21,7 @@ app.use express.static(path.join(__dirname, "public"))
 app.use (req,res,next)->
     res.locals.csrf = req.csrfToken()
     res.locals.paypal = app.config.paypal
+    res.locals.noclients = app.config.noclients
     next()
 routes app
 

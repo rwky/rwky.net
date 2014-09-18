@@ -19,6 +19,9 @@
     </head>
 
     <body class="{{bodyClass}}">
+        {{#noclients}}
+        <img src="/images/no-clients.png" alt="Not accepting new clients" id="no-clients">
+        {{/noclients}}
         <nav class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
