@@ -1,0 +1,15 @@
+---
+- name: Install pypy
+  script: ansible.sh
+
+- name: Install pip
+  script: get-pip.py
+
+- name: Copy pip wrapper
+  copy: src=pip mode=0755 dest=/srv/pypy/bin/pip
+
+- name: Install docker pip module
+  pip: name=docker-py
+
+- name: Install requests pip module
+  pip: name=requests

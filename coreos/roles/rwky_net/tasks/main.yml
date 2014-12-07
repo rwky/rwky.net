@@ -1,0 +1,9 @@
+---
+- name: Copy rwky_net service 
+  copy: src=rwky_net.service dest=/etc/systemd/system/rwky_net.service
+
+- name: Copy rwky.net config
+  synchronize: src=config/ dest=/srv/rwky.net/ links=no recursive=yes set_remote_user=no
+
+- name: Enable rwky_net service
+  service: name=rwky_net.service state=restarted enabled=yes

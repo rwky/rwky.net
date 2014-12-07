@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="rwky.net - Server Administration and Programming made simple">
+        <meta name="author" content="Rowan Wookey admin@rwky.net">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-6555084-7', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+        <title>rwky.net - Server Administration and Programming made simple</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap theme -->
+        <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+        <!-- custom css -->
+        <link href="/css/main.css" rel="stylesheet">
+
+    </head>
+
+    <body class="{{bodyClass}}">
+        <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">rwky.net</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-inverse" id="main-nav">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/server-administration">Server Administration</a></li>
+                    <li><a href="/programming">Programming</a></li>
+                    <li><a href="/testimonials">Testimonials</a></li>
+                    <li><a href="/open-source">Open Source</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        </nav>
+
+        <div class="container theme-showcase">

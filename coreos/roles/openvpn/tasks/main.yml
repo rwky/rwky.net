@@ -1,0 +1,24 @@
+---
+- name: Copy openvpn tcp service 
+  template: src=openvpn_tcp.service dest=/etc/systemd/system/openvpn_tcp.service
+
+- name: Copy openvpn udp service 
+  template: src=openvpn_udp.service dest=/etc/systemd/system/openvpn_udp.service
+
+- name: Copy openvpn config
+  synchronize: src=openvpn/ dest=/srv/openvpn-tcp/ links=no recursive=yes set_remote_user=no
+
+- name: Copy openvpn config
+  synchronize: src=openvpn/ dest=/srv/openvpn/ links=no recursive=yes set_remote_user=no
+
+- name: Copy openvpn udp config
+  copy: src=openvpn.conf dest=/srv/openvpn/openvpn.conf 
+
+- name: Copy openvpn tcp config
+  copy: src=openvpn-tcp.conf dest=/srv/openvpn-tcp/openvpn.conf
+
+- name: Enable openvpn tcp service
+  service: name=openvpn_tcp state=restarted enabled=yes
+
+- name: Enable openvpn udp service
+  service: name=openvpn_udp state=restarted enabled=yes

@@ -1,0 +1,17 @@
+{{>header}}
+<div class="container">
+<h1>Save Credit/Debit Card Details</h1>
+<div class="col-md-4">
+{{#err}}<div class="alert alert-danger">{{err}}</div>{{/err}}
+{{#msg}}<div class="alert alert-success">{{msg}}</div>{{/msg}}
+Your card will be authorized for £1.00 but will not be charged.
+<form action="/save-card" method="post" id="stripe-form" role="form">
+<label>Name (or company): </label><input type="text" class="form-control" required="required" name="name" value="{{name}}"><br>
+<label>Email: </label><input required="required" type="email" name="email" class="form-control" value="{{email}}">
+<input type="hidden" name="_csrf" value="{{csrf}}"><br>
+<button type="submit" class="btn btn-primary">Enter Card Details</button>
+</form>
+Powered by <a href="http://www.stripe.com" target="_blank">Stripe</a><br>
+</div>
+</div>
+{{>footer}}

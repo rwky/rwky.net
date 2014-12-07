@@ -1,0 +1,12 @@
+passenger_user www-data;
+
+server {
+    listen 80;
+    root /home/app/public;
+    expires off;
+    passenger_enabled on;
+    passenger_app_env dev;
+    passenger_startup_file app.js;
+    passenger_app_type node;
+}
+

@@ -1,0 +1,28 @@
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+:smurfs - [0:0]
+:tcpflags - [0:0]
+-A FORWARD -i docker0 -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -i eth0 -j tcpflags
+-A INPUT -i eth0 -j smurfs
+-A INPUT -m state --state INVALID -j DROP
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp -m icmp --icmp-type 3/4 -j ACCEPT
+-A INPUT -p icmp -m icmp --icmp-type 11 -j ACCEPT
+-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
+-A INPUT -p tcp -m multiport --dports 22,{{ssh_port}} -j ACCEPT
+-A tcpflags -p tcp -m tcp --tcp-flags FIN,SYN,RST,PSH,ACK,URG FIN,PSH,URG -j DROP
+-A tcpflags -p tcp -m tcp --tcp-flags FIN,SYN,RST,PSH,ACK,URG NONE -j DROP
+-A tcpflags -p tcp -m tcp --tcp-flags SYN,RST SYN,RST -j DROP
+-A tcpflags -p tcp -m tcp --tcp-flags FIN,SYN FIN,SYN -j DROP
+-A tcpflags -p tcp -m tcp --sport 0 --tcp-flags FIN,SYN,RST,ACK SYN -j DROP
+-A smurfs -s 0.0.0.0/32 -j RETURN
+-A smurfs -m addrtype --src-type BROADCAST -j DROP
+-A smurfs -s 224.0.0.0/4 -j DROP
+-A INPUT -j LOG -m limit --limit 10/sec --log-prefix "iptables:INPUT:DROP:" --log-level 6
+-A FORWARD -j LOG --log-prefix "iptables:FORWARD:DROP:" --log-level 6
+COMMIT
+

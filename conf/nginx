@@ -1,0 +1,22 @@
+server {
+    listen 80 default_server;
+    rewrite ^ https://www.rwky.net$uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name www.rwky.net;
+    root /home/app/public;
+    ssl_certificate /home/app/config/rwky.net.wild.crt;
+    ssl_certificate_key /home/app/config/rwky.net.wild.key;
+
+    # HSTS (ngx_http_headers_module is required) (15768000 seconds = 6 months)
+    add_header Strict-Transport-Security max-age=15768000;
+
+    expires 7d;
+    passenger_enabled on;
+}
+
+passenger_pre_start https://www.rwky.net/;
+
+

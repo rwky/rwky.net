@@ -1,0 +1,2 @@
+#!/bin/bash
+LD_LIBRARY_PATH=/srv/pypy/pypy/lib:$LD_LIBRARY_PATH /srv/pypy/pypy/bin/$(basename $0) $@
