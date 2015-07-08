@@ -5,6 +5,7 @@ After=iptables-restore.service
 
 [Service]
 TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker pull rwky/rwky.net:latest
 ExecStartPre=-/usr/bin/docker kill rwky_net 
 ExecStartPre=-/usr/bin/docker rm rwky_net
 ExecStart=/usr/bin/docker run -p 443:443 -p 80:80 -v /srv/rwky.net:/home/app/config -v /srv/log:/var/log --name rwky_net rwky/rwky.net:latest
