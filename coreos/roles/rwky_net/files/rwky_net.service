@@ -2,9 +2,11 @@
 Description=rwky.net node
 After=docker.service
 After=iptables-restore.service
+After=system-cloudinit@usr-share-oem-cloud\x2dconfig.yml.service
 
 [Service]
 TimeoutStartSec=0
+ExecStartPre=/usr/bin/sleep 1
 ExecStartPre=-/usr/bin/docker pull rwky/rwky.net:latest
 ExecStartPre=-/usr/bin/docker kill rwky_net 
 ExecStartPre=-/usr/bin/docker rm rwky_net

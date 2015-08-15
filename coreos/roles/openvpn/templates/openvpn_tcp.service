@@ -2,12 +2,14 @@
 Description=OpenVPN TCP service
 After=docker.service
 After=iptables-restore.service
+After=system-cloudinit@usr-share-oem-cloud\x2dconfig.yml.service
 
 [Service]
 TimeoutStartSec=0
+ExecStartPre=/usr/bin/sleep 1
+ExecStartPre=-/usr/bin/docker pull kylemanna/openvpn:latest
 ExecStartPre=-/usr/bin/docker kill openvpn_tcp
 ExecStartPre=-/usr/bin/docker rm openvpn_tcp
-ExecStartPre=-/usr/bin/docker pull kylemanna/openvpn:latest
 ExecStart=/usr/bin/docker run -v /srv/openvpn-tcp:/etc/openvpn --name openvpn_tcp -p {{openvpn_tcp}}:{{openvpn_tcp}} --cap-add=NET_ADMIN kylemanna/openvpn 
 
 [Install]
