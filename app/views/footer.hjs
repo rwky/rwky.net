@@ -3,8 +3,15 @@
 </div> <!-- /container -->
 
 <footer>
-All consultations and quotes are free. All services include one month's complimentary support.<br>
-<a href="/tos">Terms of Service</a> | <a href="/privacy">Privacy Policy</a> | <a href="/admin_at_rwky.net.sig">GPG Signature</a> | <a href="/cv.html">Curriculum Vitae</a> | <a href="http://twitter.com/rwky_" target="_blank">Twitter</a> | <a href="http://uk.linkedin.com/in/rwookey" target="_blank">Linked In</a> | <a href="https://github.com/rwky" target="_blank">GitHub</a> | <a href="/pay-online">Pay Online</a> | <a href="/affiliates">Affiliates</a>
+All consultations and quotes are free.<br>
+<a href="/tos">Terms of Service</a> | 
+<a href="/privacy">Privacy Policy</a> | 
+<a href="/admin_at_rwky.net.sig">GPG Signature</a> | 
+<a href="/cv.html">Curriculum Vitae</a> | 
+<a href="https://github.com/rwky" target="_blank">GitHub</a> | 
+<a href="/pay-online">Pay Online</a> | 
+<a href="/affiliates">Affiliates</a> | 
+<a href="/open-source">Open Source</a>
 <br />
 &copy; rwky.net
 <br />
@@ -17,6 +24,7 @@ Programming and server management since 2005.
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="//checkout.stripe.com/v2/checkout.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="/js/main.js"></script>
 </body>
 </html>

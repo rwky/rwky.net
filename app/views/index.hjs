@@ -1,11 +1,12 @@
 {{>header}}
 <div class="jumbotron">
 <div class="container">
-<h1>rwky.net</h1><h2>Server administration & programming made simple</h2>
+<h1>rwky.net</h1>
+<p>Simple no fuss server administration and programming, if I can do what you want I'll let you know how much it will cost and how long it will take, if I can't I won't string you along.</p>
 </div>
 </div>
 <div class="container">
-<div class="col-sm-4">
+<div class="col-sm-3">
 <h3>Server Administration</h3>
 <ul>
 <li>Server Setup</li>
@@ -14,11 +15,10 @@
 <li>Server Hardening</li>
 <li>Clusters</li>
 <li>High Availablity</li>
-<li>And more..</li>
+<li>And more</li>
 </ul><p>
-<a href="/server-administration" class="btn btn-primary">More details</a></p>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-3">
 <h3>Programming</h3>
 <ul>
 <li>Node.js</li>
@@ -27,16 +27,21 @@
 <li>Python</li>
 <li>Redis</li>
 <li>MySQL</li>
-<li>And more..</li>
+<li>And more</li>
 </ul><p>
-<a href="/programming" class="btn btn-primary">More details</a></p>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-6">
 <h3>Contact</h3>
-<form role="form" action="/contact" method="post">
+{{#contact_msg}}
+<div class="alert alert-{{contact_msg.alert}}">{{contact_msg.msg}}</div>
+{{/contact_msg}}
+<p>Every situation is different, please use the form below and let me know what you need and I'll get in touch. Talking to me is free!</p>
+<form role="form" action="/" method="post">
 <label for="contact-email">Email Address</label> <input id="contact-email" required="required" type="email" name="email" class="form-control" placeholder="Enter email"><br>
 <label for="contact-message">Message</label> <textarea id="contact-message" required="required" name="message" class="form-control"></textarea><br>
 <input type="text" name="name" style="display:none">
+<div class="g-recaptcha" data-sitekey="6LfJuQwTAAAAANw0aJMOWNYIxcF0NyFhc6lOlfGm"></div>
+<br>
 <button type="submit" class="btn btn-primary">Send</button>
 <input type="hidden" name="_csrf" value="{{csrf}}">
 </form>

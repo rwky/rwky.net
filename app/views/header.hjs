@@ -30,25 +30,7 @@
     <body class="{{bodyClass}}">
         <nav class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a href="/" class="navbar-brand">rwky.net</a>
-        </div>
-        <div class="collapse navbar-collapse navbar-inverse" id="main-nav">
-            <div class="container">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/server-administration">Server Administration</a></li>
-                    <li><a href="/programming">Programming</a></li>
-                    <li><a href="/testimonials">Testimonials</a></li>
-                    <li><a href="/open-source">Open Source</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
-            </div>
         </div>
         </nav>
 

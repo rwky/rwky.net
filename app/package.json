@@ -9,9 +9,10 @@
             "csurf":"*",
             "hjs": "*",
             "nodemailer":"*",
-            "nodemailer-sendmail-transport":"*",
+            "nodemailer-smtp-transport":"*",
             "stripe":"*",
-            "async":"*"
+            "async":"*",
+            "request":"*"
         },
         "devDependencies": {
             "grunt": "*",
@@ -19,7 +20,10 @@
             "grunt-contrib-watch": "*",
             "grunt-contrib-stylus": "*",
             "grunt-concurrent": "*",
-            "grunt-contrib-uglify": "*"
+            "grunt-contrib-uglify": "*",
+	    "grunt-shell": "*",
+            "coffeelint-variable-scope": "*",
+            "coffeelint": "*"
         },
         "repository" :{
             "type" : "git",
