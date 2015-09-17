@@ -7,6 +7,7 @@ routes = require './routes'
 app.config = require './config/config'
 
 # all environments
+app.enable 'trust proxy'
 app.set "views", __dirname + "/views"
 app.set "view engine", "hjs"
 app.use require('cookie-parser')()

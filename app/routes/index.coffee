@@ -140,3 +140,6 @@ module.exports = (app) ->
                 msg = 'Transaction processed successfully. Thank you!'
             res.render 'pay-online', bodyClass: 'pay-online', err: errmsg, msg: msg
             
+
+    app.get '/ip', (req, res) ->
+        res.send req.ip
