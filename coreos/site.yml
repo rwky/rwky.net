@@ -7,6 +7,5 @@
     - { role: iptables, tags: ["iptables"] }
     - { role: ssh, tags: ["ssh"] }
     - { role: rwky_net, tags: ["rwky_net"] }
-    - { role: openvpn, tags: ["openvpn"] }
   tasks:
     command: reboot
