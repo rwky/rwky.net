@@ -47,6 +47,7 @@ module.exports = (grunt) ->
             restart:
                 command: "passenger-config restart-app --ignore-passenger-not-running /home"
                 options:
+                    failOnError: false
                     stdout: true
                     stderr: true
             lint:
