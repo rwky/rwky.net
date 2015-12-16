@@ -1,0 +1,12 @@
+---
+- name: Copy docker service
+  copy: src=docker.service dest=/etc/systemd/system/docker.service
+  register: dockerservice
+
+- name: Reload systemd daemon 
+  command: systemctl daemon-reload
+  when: dockerservice.changed
+
+- name: Restart docker
+  service: name=docker.service state=restarted enabled=yes
+  when: dockerservice.changed
