@@ -19,6 +19,12 @@ module.exports = (grunt) ->
                 src: ['*.coffee']
                 dest: './'
                 ext: '.js'
+            config:
+                expand: true
+                cwd: 'config/'
+                src: ['*.coffee']
+                dest: 'config/'
+                ext: '.js'
                     
         stylus:
             compile:
