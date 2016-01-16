@@ -72,7 +72,7 @@ module.exports = (app) ->
             (customer, c) ->
                 ops =
                     customer: customer.id
-                    card: customer.sources.data[0].id
+                    source: customer.sources.data[0].id
                     amount: '100'
                     capture: false
                     currency: 'gbp'
