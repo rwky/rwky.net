@@ -6,8 +6,7 @@ apt-get clean && rm -rf /var/lib/apt/lists/* && \
 rm -rf /etc/service/nginx/down && \
 rm -rf /etc/service/exim/down && \
 rm -rf /etc/service/rsyslog/down && \
-touch /etc/service/cron/down && \
-ln -sf /home/app/config/dh.pem /etc/ssl/dh.pem
+touch /etc/service/cron/down 
 ADD ./conf/exim /etc/exim4/exim4.conf
 ADD ./conf/mailname /etc/mailname
 ADD ./conf/aliases /etc/aliases
