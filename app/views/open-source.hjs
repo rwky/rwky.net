@@ -5,7 +5,6 @@
 <div class="container">
 <h3>I contribute to the following open source projects:</h3>
 <ul>
-<li>Redis Ubuntu Package <a href="https://launchpad.net/~rwky/+archive/redis" target="_blank">PPA</a></li>
 <li>Graphics Magick Ubuntu Package <a href="https://launchpad.net/~rwky/+archive/graphicsmagick" target="_blank">PPA</a></li>
 <li>Pingdom API for Node.js <a href="https://github.com/rwky/pingdom-api" target="_blank">https://github.com/rwky/pingdom-api</a></li>
 <li>GraphicsMagick for node <a href="https://github.com/aheckmann/gm" target="_blank">https://github.com/aheckmann/gm</a></li>
