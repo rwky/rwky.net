@@ -30,7 +30,10 @@
     <body class="{{bodyClass}}">
         <nav class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">
-            <a href="/" class="navbar-brand">rwky.net</a>
+            <a href="/" class="navbar-brand">
+                <img src="https://secure.gravatar.com/avatar/16984fd773fe4e40c9cb0e60ff81e600?s=50" alt="gravatar">
+                rwky.net
+            </a>
         </div>
         </nav>
 
