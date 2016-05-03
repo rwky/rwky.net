@@ -4,7 +4,7 @@ server {
 }
 
 server {
-    listen 443 ssl;
+    listen 443 ssl http2;
     server_name www.rwky.net;
     root /home/app/public;
     ssl_certificate /home/app/config/rwky.net.wild.crt;
