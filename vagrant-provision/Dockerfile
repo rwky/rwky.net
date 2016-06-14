@@ -12,3 +12,4 @@ npm -g install grunt-cli bower
 COPY ssh_key /root/.ssh/authorized_keys
 COPY nginx /etc/nginx/conf.d/default.conf
 EXPOSE 80 443 22
+WORKDIR /vagrant/app
