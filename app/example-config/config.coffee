@@ -10,3 +10,7 @@ module.exports =
     smtp:
         host: 'localhost'
     recaptcha_secret: 'QZYzvEz3'
+    ecf_email: ''
+    contacts: [
+    ]
+    slack_url: ''

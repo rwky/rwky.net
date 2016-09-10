@@ -143,3 +143,30 @@ module.exports = (app) ->
 
     app.get '/ip', (req, res) ->
         res.send req.ip
+
+    app.all '/ecf/:id', (req, res, next) ->
+        req.contact = app.config.contacts.filter((v) -> v.id is req.params.id)[0]
+        unless req.contact then return res.status(403).send 'Access denied'
+        next()
+    
+    app.get '/ecf/:id', (req, res) ->
+        res.render 'ecf'
+
+    app.post '/ecf/:id', (req, res) ->
+        ops =
+            from: app.config.from_email
+            replyTo: req.contact.email
+            to: app.config.ecf_email
+            subject: 'Emergency contact form'
+            text: req.body.message
+        mailer.sendMail ops, (err) ->
+            msg = null
+            if err
+                console.error err
+                err = 'Unable to send message'
+            else
+                msg = 'Message sent'
+
+            res.render 'ecf', { err: err, msg: msg }
+        request.post app.config.slack_url, { json: true, body: { text: req.body.message } }, (err, response, body) ->
+            if err then console.log error
