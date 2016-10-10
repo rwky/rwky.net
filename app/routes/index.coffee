@@ -168,5 +168,6 @@ module.exports = (app) ->
                 msg = 'Message sent'
 
             res.render 'ecf', { err: err, msg: msg }
-        request.post app.config.slack_url, { json: true, body: { text: req.body.message } }, (err, response, body) ->
+        request.post app.config.slack_url, { json: true, body: { text: req.body.message } }
+        , (err, response, body) ->
             if err then console.log error

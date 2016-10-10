@@ -3,11 +3,10 @@
 <h1>Affilliates</h1>
 <p>These are some services I'm affiliated with:</p>
 <ul>
-<li><a href="http://ref.name.com/aff_c?offer_id=3&amp;aff_id=3710" target="_blank">Name.com domain registration</a></li>
-<li><a href="http://www.linode.com/?r=a2fbffd7b335a2c4930c07b6dcde082b064dafb1" target="_blank">Linode.com VPS</a></li>
-<li><a href="https://clientarea.ramnode.com/aff.php?aff=055" target="_blank">RamNode VPS</a></li>
-<li><a href="https://www.digitalocean.com/?refcode=137e707f8cd1" target="_blank">Digital Ocean VPS</a></li>
-<li><a href="http://www.vultr.com/?ref=6866452" target="_blank">Vultr VPS</a></li>
+<li><a href="http://ref.name.com/aff_c?offer_id=3&amp;aff_id=3710" target="_blank" rel="noopener">Name.com domain registration</a></li>
+<li><a href="https://clientarea.ramnode.com/aff.php?aff=055" target="_blank" rel="noopener">RamNode VPS</a></li>
+<li><a href="https://www.digitalocean.com/?refcode=137e707f8cd1" target="_blank" rel="noopener">Digital Ocean VPS</a></li>
+<li><a href="http://www.vultr.com/?ref=6866452" target="_blank" rel="noopener">Vultr VPS</a></li>
 </ul>
 </div>
 {{>footer}}

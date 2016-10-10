@@ -9,14 +9,18 @@ All consultations and quotes are free.<br>
 <a href="/admin_at_rwky.net.sig">GPG Signature</a> | 
 <a href="/id_rsa.pub">SSH Public Key</a> | 
 <a href="/cv.html">Curriculum Vitae</a> | 
-<a href="https://github.com/rwky" target="_blank">GitHub</a> | 
+<a href="https://github.com/rwky" target="_blank" rel="noopener">GitHub</a> | 
 <a href="/pay-online">Pay Online</a> | 
 <a href="/affiliates">Affiliates</a> | 
 <a href="/open-source">Open Source</a>
-<br />
+<br>
 &copy; rwky.net
-<br />
+<br>
 Programming and server management since 2005.
+<br>
+<a href="https://www.fsf.org" target="_blank" rel="noopener">
+    <img src="https://static.fsf.org/nosvn/associate/crm/977325.png" alt="FSF">
+</a>
 </footer>
 
 <!-- Bootstrap core JavaScript
