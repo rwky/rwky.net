@@ -2,12 +2,10 @@
 <div class="container">
 <h1>Emergency contact form</h1>
 <div class="col-md-12">
-{{#err}}<div class="alert alert-danger">{{err}}</div>{{/err}}
 {{#msg}}<div class="alert alert-success">{{msg}}</div>{{/msg}}
 <div class="alert alert-warning">Please only use this form if there is a real emergency. Do <b>not</b> test this form.</div>
 <form action="" method="post" role="form">
 <textarea class="form-control" name="message"></textarea>
-<input type="hidden" name="_csrf" value="{{csrf}}">
 <button type="submit" class="btn btn-primary">Send</button>
 </form>
 </div>

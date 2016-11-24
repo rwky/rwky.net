@@ -4,6 +4,23 @@ module.exports = (app) ->
     stripe = require('stripe')(app.config.stripe)
     async = require 'async'
     request = require 'request'
+    crypto =  require 'crypto'
+    randNum = ->
+        min = 1
+        max = 999999
+        Math.floor Math.random() * (max - min + 1) + min
+    randOperator = ->
+        operators  = '*-+/'
+        operators.charAt(Math.floor(Math.random() * operators.length))
+    hmacCaptcha = (val) ->
+        hmac = crypto.createHmac 'sha256', app.config.captcha_secret()
+        hmac.update val.toString()
+        hmac.digest 'hex'
+        
+    app.all '*', (req, res, next) ->
+        res.locals.captcha = randNum() + ' ' + randOperator() + ' ' + randNum() + ' ' + randOperator() + ' ' + randNum()
+        res.locals.captcha_hmac = hmacCaptcha Math.round(eval(res.locals.captcha))
+        next()
     
     app.get '/', (req, res) ->
         res.render 'index', bodyClass: 'index'
@@ -14,27 +31,22 @@ module.exports = (app) ->
             to: app.config.to_email
             subject: 'rwky.net contact form'
             text: 'A message from ' + req.body.email + "\r\n" + req.body.message
-        recaptcha_form =
-            secret: app.config.recaptcha_secret
-            response: req.body['g-recaptcha-response']
-            remoteip: req.ip
-        request.post 'https://www.google.com/recaptcha/api/siteverify',
-        { form: recaptcha_form }, (err, response, body) ->
+        contact_msg =
+            msg: 'Email sent, you should receive a reply within a few days, normally less.'
+            alert: 'success'
+        captcha = parseInt req.body.captcha, 10
+        if isNaN(captcha) or hmacCaptcha(captcha) isnt req.body.captcha_hmac
             contact_msg =
-                msg: 'Email sent, you should receive a reply within 24 hours Monday to Friday.'
-                alert: 'success'
-            if err or not JSON.parse(body).success
-                contact_msg =
-                    msg: 'Captcha failed'
-                    alert: 'danger'
-                res.render 'index', bodyClass: 'index', contact_msg: contact_msg
-            else
-                mailer.sendMail ops, (err) ->
-                    if err?
-                        contact_msg =
-                            msg: 'There was an error sending your mail, please try again'
-                            alert: 'danager'
-                res.render 'index', bodyClass: 'index', contact_msg: contact_msg
+                msg: 'Captcha failed'
+                alert: 'danger'
+            res.render 'index', bodyClass: 'index', contact_msg: contact_msg
+        else
+            mailer.sendMail ops, (err) ->
+                if err?
+                    contact_msg =
+                        msg: 'There was an error sending your mail, please try again'
+                        alert: 'danager'
+            res.render 'index', bodyClass: 'index', contact_msg: contact_msg
             
     app.get '/open-source', (req, res) ->
         res.render 'open-source', bodyClass: 'open-source'
@@ -153,21 +165,38 @@ module.exports = (app) ->
         res.render 'ecf'
 
     app.post '/ecf/:id', (req, res) ->
-        ops =
-            from: app.config.from_email
-            replyTo: req.contact.email
-            to: app.config.ecf_email
-            subject: 'Emergency contact form'
-            text: req.body.message
-        mailer.sendMail ops, (err) ->
-            msg = null
-            if err
+        retry_ops =
+            times: 3
+            interval: 1000
+            errorFilter: (err) ->
                 console.error err
-                err = 'Unable to send message'
-            else
-                msg = 'Message sent'
+                true
+        
+        msg = "From: " + req.contact.email + " " + req.body.message
 
-            res.render 'ecf', { err: err, msg: msg }
-        request.post app.config.slack_url, { json: true, body: { text: req.body.message } }
-        , (err, response, body) ->
-            if err then console.log error
+        retry = (f) ->
+            async.retry retry_ops, f
+            , (err, result) ->
+                console.log arguments
+        retry (c) ->
+            request.post app.config.sms_url, { json: true, headers: { "x-api-key": app.config.sms_api_key }, body: { msg: msg.slice(0,100) } }, (err, httpResponse, body) ->
+                if err then return c err
+                unless body.status is 'queued' then return c body
+                c()
+        retry (c) ->
+            request.post app.config.slack_url, { json: true, body: { text: msg } }, (err, httpResponse, body) ->
+                if err then return c err
+                unless body is 'ok' then return c body
+                c()
+    
+        retry (c) ->
+            ops =
+                from: app.config.from_email
+                replyTo: req.contact.email
+                to: app.config.ecf_email
+                subject: 'Emergency contact form'
+                text: msg
+            mailer.sendMail ops, (err) ->
+                if err then return c err
+                c()
+        res.render 'ecf', { msg: 'Message sent' }

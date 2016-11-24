@@ -22,18 +22,8 @@
 
   app.set("view engine", "hjs");
 
-  app.use(require('cookie-parser')());
-
   app.use(require('body-parser').urlencoded({
     extended: false
-  }));
-
-  app.use(require('csurf')({
-    cookie: {
-      key: 'csrf',
-      secure: process.env.NODE_ENV !== 'dev',
-      httpOnly: true
-    }
   }));
 
   app.use(function(req, res, next) {
@@ -56,7 +46,6 @@
       clearTimeout(req.timeout);
       return res.oldEnd.apply(this, args);
     };
-    res.locals.csrf = req.csrfToken();
     res.locals.paypal = app.config.paypal;
     return next();
   });
@@ -83,11 +72,8 @@
   routes(app);
 
   app.use(function(err, req, res, next) {
-    if (err.message !== 'invalid csrf token') {
-      console.error(err + ' ' + err.stack);
-      return res.status(500).send('Oops something has gone wrong, please try again');
-    }
-    return res.status(403).send('There is a problem with your session, please try clearing your cookies and trying your request again');
+    console.error(err + ' ' + err.stack);
+    return res.status(500).send('Oops something has gone wrong, please try again');
   });
 
   http.createServer(app).listen(3000);

@@ -2,7 +2,7 @@
 <div class="jumbotron">
 <div class="container">
 <h1>rwky.net</h1>
-<p>Simple no fuss server administration and programming, if I can do what you want I'll let you know how much it will cost and how long it will take, if I can't I won't string you along.</p>
+<p>Making bits of the internet work for over a decade - simple, no fuss server administration and programming.</p>
 </div>
 </div>
 <div class="container">
@@ -13,7 +13,7 @@
 <li>Server Monitoring</li>
 <li>Server Backups</li>
 <li>Server Hardening</li>
-<li>Clusters</li>
+<li>Clouds (AWS, Google etc)</li>
 <li>High Availablity</li>
 <li>And more</li>
 </ul><p>
@@ -33,17 +33,18 @@
 <div class="col-sm-6">
 <h3>Contact</h3>
 {{#contact_msg}}
-<div class="alert alert-{{contact_msg.alert}}">{{contact_msg.msg}}</div>
+<div class="alert alert-{{contact_msg.alert}}"><b>{{contact_msg.msg}}</b></div>
 {{/contact_msg}}
 <p>Every situation is different, please use the form below and let me know what you need and I'll get in touch. Talking to me is free!</p>
 <form role="form" action="/" method="post">
 <label for="contact-email">Email Address</label> <input id="contact-email" required="required" type="email" name="email" class="form-control" placeholder="Enter email"><br>
 <label for="contact-message">Message</label> <textarea id="contact-message" required="required" name="message" class="form-control"></textarea><br>
-<input type="text" name="name" style="display:none">
-<div class="g-recaptcha" data-sitekey="6LfJuQwTAAAAANw0aJMOWNYIxcF0NyFhc6lOlfGm"></div>
+Please complete the following maths challenge to prove you're human (and can do basic maths or have a calculator).<br>
+{{captcha}} = <input class="form-control" required="required" type="number" name="captcha"><br>
+(please round to the nearest whole number).
+<input type="hidden" name="captcha_hmac" value="{{captcha_hmac}}">
 <br>
 <button type="submit" class="btn btn-primary">Send</button>
-<input type="hidden" name="_csrf" value="{{csrf}}">
 </form>
 </div>
 </div>

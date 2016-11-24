@@ -2,13 +2,13 @@
 <div class="container">
 <h1>Pay Online</h1>
 <div class="col-md-4">
+<noscript><b>Stripe and Paypal require Javascript enabled, please enable it to use this form</b><br></noscript>
 <h4>Pay with Credit/Debit card</h4>
 {{#err}}<div class="alert alert-danger">{{err}}</div>{{/err}}
 {{#msg}}<div class="alert alert-success">{{msg}}</div>{{/msg}}
 <form action="/pay-online/stripe" method="post" id="stripe-form" role="form">
 Invoice number: <input type="text" class="form-control" name="invoice" value="{{invoice}}"><br />
 Amount: <label>&pound;</label><input type="text" name="amount" class="form-control" value="{{amount}}">
-<input type="hidden" name="_csrf" value="{{csrf}}"><br>
 <button type="submit" class="btn btn-primary">Pay with Credit/Debit Card</button>
 </form>
 Powered by <a href="http://www.stripe.com" target="_blank">Stripe</a><br>
