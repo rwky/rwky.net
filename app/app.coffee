@@ -11,6 +11,8 @@ app.enable 'trust proxy'
 app.set "views", __dirname + "/views"
 app.set "view engine", "hjs"
 app.use require('body-parser').urlencoded extended: false
+app.use require('body-parser').json()
+app.use require('body-parser').raw(type: "*/*")
 
 app.use (req, res, next) ->
     # add idle timeout handlers. this is when NO data is sent/recieved 

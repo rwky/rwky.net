@@ -172,23 +172,33 @@ module.exports = (app) ->
                 console.error err
                 true
         
-        msg = "From: " + req.contact.email + " " + req.body.message
+        msg = "From: " + req.contact.email + " "
+    
+        if Buffer.isBuffer(req.body)
+            msg += req.body.toString('utf8')
+        else if req.body.message
+            msg += req.body.message
+        else
+            try
+                msg += JSON.stringify(req.body)
+            catch e
+                msg += req.body.toString()
 
         retry = (f) ->
             async.retry retry_ops, f
             , (err, result) ->
                 console.log arguments
-        retry (c) ->
-            request.post app.config.sms_url, { json: true, headers: { "x-api-key": app.config.sms_api_key }, body: { msg: msg.slice(0,100) } }, (err, httpResponse, body) ->
-                if err then return c err
-                unless body.status is 'queued' then return c body
-                c()
-        retry (c) ->
-            request.post app.config.slack_url, { json: true, body: { text: msg } }, (err, httpResponse, body) ->
-                if err then return c err
-                unless body is 'ok' then return c body
-                c()
-    
+        if req.path.indexOf('debug') is -1
+            retry (c) ->
+                request.post app.config.sms_url, { json: true, headers: { "x-api-key": app.config.sms_api_key }, body: { msg: msg.slice(0,100) } }, (err, httpResponse, body) ->
+                    if err then return c err
+                    unless body.status is 'queued' then return c body
+                    c()
+            retry (c) ->
+                request.post app.config.slack_url, { json: true, body: { text: msg } }, (err, httpResponse, body) ->
+                    if err then return c err
+                    unless body is 'ok' then return c body
+                    c()
         retry (c) ->
             ops =
                 from: app.config.from_email
