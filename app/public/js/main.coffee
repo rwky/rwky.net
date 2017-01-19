@@ -9,7 +9,7 @@ $( ->
         name: 'rwky.net'
         address: false
         panelLabel: 'Checkout',
-        currency: 'gbp'
+        currency: $('#stripe-form input[name="currency"]').val()
         token: (res) ->
             $('#stripe-form').append($('<input type="hidden" name="stripeToken">')
             .val(res.id)).submit()

@@ -8,7 +8,8 @@
 {{#msg}}<div class="alert alert-success">{{msg}}</div>{{/msg}}
 <form action="/pay-online/stripe" method="post" id="stripe-form" role="form">
 Invoice number: <input type="text" class="form-control" name="invoice" value="{{invoice}}"><br />
-Amount: <label>&pound;</label><input type="text" name="amount" class="form-control" value="{{amount}}">
+Amount: <label>{{{currencySym}}}</label><input type="text" name="amount" class="form-control" value="{{amount}}">
+<input type="hidden" name="currency" value="{{currency}}"><br />
 <button type="submit" class="btn btn-primary">Pay with Credit/Debit Card</button>
 </form>
 Powered by <a href="http://www.stripe.com" target="_blank">Stripe</a><br>
@@ -21,8 +22,8 @@ Powered by <a href="http://www.stripe.com" target="_blank">Stripe</a><br>
 <input type="hidden" name="business" value="{{paypal}}">
 <input type="hidden" name="lc" value="GB">
 Invoice number: <input class="form-control" type="text" name="item_name" value="{{invoice}}"><br />
-Amount: <label>&pound;</label><input class="form-control" type="text" name="amount" value="{{amount}}">
-<input type="hidden" name="currency_code" class="currency" value="GBP"><br />
+Amount: <label>{{{currencySym}}}</label><input class="form-control" type="text" name="amount" value="{{amount}}">
+<input type="hidden" name="currency_code" value="{{currency}}"><br />
 <input type="hidden" name="button_subtype" value="services">
 <input type="hidden" name="no_note" value="0">
 <input type="hidden" name="cn" value="Add special instructions to the seller">

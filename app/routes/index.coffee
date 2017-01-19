@@ -127,12 +127,22 @@ module.exports = (app) ->
     app.get '/pay-online', (req, res) ->
         amount = req.query.amount or 0
         invoice = req.query.invoice or ''
-        res.render 'pay-online', bodyClass: 'pay-online', amount: amount, invoice: invoice
+        currency = req.query.currency or 'GBP'
+        currencySym = if currency is 'GBP' then '&pound;' else '&euro;'
+        res.render 'pay-online', {
+            bodyClass: 'pay-online'
+            amount: amount
+            invoice: invoice
+            currency: currency
+            currencySym: currencySym
+        }
     
     app.post '/pay-online/stripe', (req, res) ->
+        currency = if req.body.currency is 'EUR' then 'EUR' else 'GBP'
+        currencySym = if currency is 'GBP' then '&pound;' else '&euro;'
         ops =
-            currency: 'gbp'
-            amount: req.body.amount * 100
+            currency: currency
+            amount: parseFloat(req.body.amount) * 100
             source: req.body.stripeToken
             description: req.body.invoice
         stripe.charges.create ops, (err, r) ->
@@ -150,7 +160,15 @@ module.exports = (app) ->
                     errmsg = 'Unable to process transaction, please try again'
             else
                 msg = 'Transaction processed successfully. Thank you!'
-            res.render 'pay-online', bodyClass: 'pay-online', err: errmsg, msg: msg
+            res.render 'pay-online', {
+                bodyClass: 'pay-online'
+                err: errmsg
+                msg: msg
+                amount: req.body.amount
+                invoice: req.body.invoice
+                currency: currency
+                currencySym: currencySym
+            }
             
 
     app.get '/ip', (req, res) ->
