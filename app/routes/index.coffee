@@ -135,6 +135,7 @@ module.exports = (app) ->
             invoice: invoice
             currency: currency
             currencySym: currencySym
+            show_paypal: currency is 'GBP'
         }
     
     app.post '/pay-online/stripe', (req, res) ->
@@ -168,6 +169,7 @@ module.exports = (app) ->
                 invoice: req.body.invoice
                 currency: currency
                 currencySym: currencySym
+                show_paypal: currency is 'GBP'
             }
             
 

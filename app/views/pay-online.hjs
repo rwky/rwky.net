@@ -15,6 +15,7 @@ Amount: <label>{{{currencySym}}}</label><input type="text" name="amount" class="
 Powered by <a href="http://www.stripe.com" target="_blank">Stripe</a><br>
 </div>
 <div class="col-md-2"></div>
+{{#show_paypal}}
 <div class="col-md-4">
 <h4>Pay with Paypal</h4>
 <form role="form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -33,5 +34,6 @@ Amount: <label>{{{currencySym}}}</label><input class="form-control" type="text" 
 <img alt="Pay with Paypal" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
 </form>
 </div>
+{{/show_paypal}}
 </div>
 {{>footer}}
