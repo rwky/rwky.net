@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generating SSH keys</title>
+    <meta charset="utf-8"  />
+</head>
+
+<body>
+<h1>SSH Key Pair Generation</h1>
+To generate a ssh key follow the instructions for your platform:<br>
+<p>
+<h2>Windows</h2><br>
+Download puttygen from <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html</a> and follow the instructions here <a href="https://the.earth.li/%7Esgtatham/putty/0.67/htmldoc/Chapter8.html#pubkey-puttygen">https://the.earth.li/%7Esgtatham/putty/0.67/htmldoc/Chapter8.html#pubkey-puttygen</a>
+</p>
+<p>
+<h2>Mac/Linux</h2><br>
+Open up a terminal and run:<br>
+<code>ssh-keygen -t rsa -b 4096 -C rwky</code><br><br>
+Follow the on screen instructions. Once generated run<br>
+<code>cat ~/.ssh/id_rsa.pub</code> (assuming you used the default file path when generating the key, if you didn't run <code>cat /path/you/specified.pub</code><br><br>
+Copy the output, this is the public key, it should look something like this:<br>
+<code>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDF5fQF5O65DtnjlxIJTgCn9V1yURLLoOoXXCuApff/+hKS/O0wtAhDGeyrsxgmhffvVE1Jv3kd9gVw4PjXqLhx4rAbJ6D7I1AkR2X5j84NE8TRCBRFZiS8n1hZLvNH+AjcxyrJPLmZQZO/T6elxMPe96TxdsYKTqUlTRNzbbJIki8xbcpotWvq0GYUuwdyYdmcLNPntmw0B7+OUlDkcu0Ptnp/7ndB+dNYrwbcDflJgNPrtrWQlKaazHpcSiqcLRHdUN49a0lqAkmv2sFRBZbLDgcxjsRd9wX8ppuGGinWd9zvGL8dRaC4CDAWMw1lMzwkmFAhh9CoYbiOtJ90sGSmh7xpBSjLWP17H65/Z07/4+UtHdT5fTwPq7n9A9HTXRW/+5v9xEpAzpCBKZRxvNqLH4poY7oNNzqWSZJWsR5efofT8FFmcob818szzHuL9OFDKsU9PPsrucnzZ2wXeoP3WO80wCdiyLIXFyDBG7Kzg02DRu3+rVHqIPlEPMiD45NDRKfKFPSzkECvtUCr0/IvFeOPuRj7HrLjLT+TeMCXT5UextdvOCVpRM+1+b+ATat1ZdN/B82TGnz3TitYf7HgwsRVC/9XR7cUjwQy6cCQZ8c6At3Nml/KJehvro5YAI6/JlR1Bwq9CHOaAQCMYmS1jLP4/VwwzooJRbT19/kolw== admin@rwky.net</code><br>
+<br>
+It must start with <code>ssh-rsa</code> if it doesn't then you probably ran <code>cat</code> on your private key and should not share this with anyone.<br>
+<br>
+It is <b>very important</b> that you keep the private key private.<br><br>
+Your key pair will be used for both SSH command line access and SFTP file transfer.<br>
+</p>
+<p>
+<h2>SSH/SFTP clients</h2>
+I recommend the following ssh and sftp clients.<br>
+Windows SFTP: <a href="https://winscp.net/eng/index.php">WinSCP</a><br>
+Windows SSH: <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">Putty</a><br>
+Windows/Mac SFTP: <a href="https://cyberduck.io/">Cyberduck</a><br>
+Windows/Mac/Linux SFTP: <a href="https://filezilla-project.org/">FileZilla</a><br>
+Mac/Linux have ssh already installed using the command <code>ssh</code> in the terminal.
+
+</p>
+</body>
+</html>
