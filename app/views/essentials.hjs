@@ -1,0 +1,126 @@
+{{>header}}
+<div class="container">
+<noscript><b>Stripe requires Javascript enabled, please enable it to use this form</b><br></noscript>
+<div class="col-md-12">
+<h1>Essentials server</h1>
+{{#contact_msg}}
+<div class="alert alert-{{contact_msg.alert}}"><b>{{contact_msg.msg}}</b></div>
+{{/contact_msg}}
+</div>
+<div class="col-md-6">
+Please complete the following form to request an essentials server
+<form id="stripe-form" action="" method="post" role="form">
+<div class="form-group">
+    <label for="es-name">Your name</label>
+    <input class="form-control" required="required" type="text" name="name" id="es-name">
+</div>
+<div class="form-group">
+    <label for="es-email">Your email</label>
+    <input class="form-control" required="required" type="email" name="email" id="es-email">
+</div>
+<div class="form-group">
+    <label for="es-pubkey">Your SSH public key</label>
+    <textarea class="form-control" required="required" name="pubkey" id="es-pubkey"></textarea><br>
+    <a href="/docs/ssh-keygen.html">If you don't have a SSH public key click here for instructions on how to create one</a>
+</div>
+<div class="form-group">
+    <label for="es-about">A little bit about what you will be hosting, i.e. a Wordpress blog.</label>
+    <textarea class="form-control" required="required" name="about" id="es-about"></textarea>
+    <small>Just so I can make sure this hosting is suitable for you</small>
+</div>
+<div class="form-group">
+<label for="es-os">Operating system</label>
+<select class="form-control" required="required" name="os" id="es-os">
+    <option value="centos">CentOS 7</option>
+    <option value="ubuntu">Ubuntu 16.04</option>
+</select>
+<p><small>CentOS provides PHP 5.4.16 and MariaDB 5.5 (compatible with MySQL 5.5) and is supported until 2024.<br>
+Ubuntu provides PHP 7.0.13 and MariaDB 10.0.29 (compatible with MySQL 5.6) and is supported until 2021.<br>
+If you are unsure which to choose check your software requirements, if your software is compatible with both I suggest CentOS due to the longer support cycle.</small></p>
+</div>
+<div class="form-group">
+<label for="es-size">Server size and location</label>
+<select class="form-control" required="required" name="size" id="es-size">
+    <option value="Canada1">Canada - 1 CPU core, 2GB RAM, 10GB SSD £30/month</option>
+    <option value="Canada2">Canada - 1 CPU core, 4GB RAM, 20GB SSD £35/month</option>
+    <option value="Canada3">Canada - 2 CPU cores, 8GB RAM, 40GB SSD £45/month</option>
+    <option value="France1">France - 2 CPU cores, 2GB RAM, 50GB SSD £30/month</option>
+    <option value="France2">France - 4 CPU cores, 4GB RAM, 50GB SSD £35/month</option>
+    <option value="France3">France - 6 CPU cores, 8GB RAM, 50GB SSD £45/month</option>
+</select>
+<small>Choose the location nearest your target audience</small>
+</div>
+<div class="form-group">
+<label for="es-existing">Are you an existing customer?</label>
+<select class="form-control" required="required" name="existing" id="es-existing">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+<small>If you are an existing customer and have saved your card details with me choose yes so you aren't prompted to save them again</small>
+</div>
+<div class="form-group">
+    <button type="submit" class="btn btn-primary">Continue</button>
+</div>
+</form>
+</div>
+<div class="col-md-6">
+<div class="panel panel-default">
+    <div class="panel-heading">About</div>
+    <div class="panel-body">
+    An essentials server is designed for hosting sites such as Wordpress Blogs, small e-commerce sites (which use 3rd parties such as Stripe for credit card processing), forums, Drupal sites and anything else that runs on PHP and MySQL.
+    </div>
+</div> 
+<div class="panel panel-default">
+    <div class="panel-heading">What you will get</div>
+    <div class="panel-body">
+        <ul>
+        <li>A managed LAMP (Linux-Apache-MySQL-PHP) server</li>
+        <li>Software and security updates</li>
+        <li>Daily backups to an off-site location</li>
+        <li>Root SSH access</li>
+        <li>External and internal server monitoring</li>
+        <li>SSL enabled by default</li>
+        <li>One on one support from yours truly!</li>
+        </ul>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">What you won't get</div>
+    <div class="panel-body">
+        <ul>
+        <li>Support for anything that isn't installed by default, i.e. extra software</li>
+        <li>Testing of backup restoration</li>
+        <li>Assistance with your site/code</li>
+        <li>Custom configurations/scripts</li>
+        </ul>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Pricing</div>
+    <div class="panel-body">
+        There are six types of server, pricing varies by size and location:
+    <ul>
+        <li>Canada - 1 CPU core, 2GB RAM, 10GB SSD £30/month</li>
+        <li>Canada - 1 CPU core, 4GB RAM, 20GB SSD £35/month</li>
+        <li>Canada - 2 CPU cores, 8GB RAM, 40GB SSD £45/month</li>
+        <li>France - 2 CPU cores, 2GB RAM, 50GB SSD £30/month</li>
+        <li>France - 4 CPU cores, 4GB RAM, 50GB SSD £35/month</li>
+        <li>France - 6 CPU cores, 8GB RAM, 50GB SSD £45/month</li>
+    </ul>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Payment</div>
+    <div class="panel-body">
+    Payment is taken by credit card, if you are a new customer you will be prompted to save your card details.</p><p>
+    Payment is taken one month in advance on or shortly after the 1st of the month, you will be emailed a receipt.</p><p>
+    Your first bill will contain a pro-rated charge for the remainder of the month and the advance payment for the next month.</p><p>
+    You may cancel at any time, however any remaining time for the month will not be refunded.</p><p>
+    Extra charges maybe applied to some situations. Example: if you require a backup to be restored because you deleted a database by accident you may be charged for this. I will provide you with a quote for any extra work.</p><p>
+    In the case of a server failure where a backup needs to be restored you won't be charged.</p>
+    <p>If you have any questions or need something more advanced please <a href="/">contact me</a> via the form on the home page.</p>
+    </div>
+</div>
+</div>
+</div>
+{{>footer}}

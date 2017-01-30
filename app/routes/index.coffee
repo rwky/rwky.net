@@ -45,7 +45,7 @@ module.exports = (app) ->
                 if err?
                     contact_msg =
                         msg: 'There was an error sending your mail, please try again'
-                        alert: 'danager'
+                        alert: 'danger'
             res.render 'index', bodyClass: 'index', contact_msg: contact_msg
             
     app.get '/open-source', (req, res) ->
@@ -230,3 +230,22 @@ module.exports = (app) ->
                 if err then return c err
                 c()
         res.render 'ecf', { msg: 'Message sent' }
+
+    app.get '/essentials', (req, res) ->
+        res.render 'essentials', bodyClass: 'essentials'
+
+    app.post '/essentials', (req, res) ->
+        ops =
+            from: app.config.from_email
+            to: app.config.to_email
+            subject: 'Essentials server request'
+            text: JSON.stringify(req.body)
+        contact_msg =
+            msg: "Since I like to add a personal touch to my services, I'll email you as soon as possible to confirm your request"
+            alert: 'success'
+        mailer.sendMail ops, (err) ->
+            if err?
+                contact_msg =
+                    msg: 'There was an error sending your request, please try again'
+                    alert: 'danger'
+            res.render 'essentials', bodyClass: 'essentials', contact_msg: contact_msg

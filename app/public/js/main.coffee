@@ -27,13 +27,14 @@ $( ->
             })
             false
 
-    $('body.save-card #stripe-form').on 'submit', ->
+    $('body.save-card #stripe-form, body.essentials #stripe-form').on 'submit', ->
         $('#stripe-form button').prop('disabled', true).html('Processing..')
-        if $(@).find('input[name="stripeToken"]').length is 0
+        if $(@).find('input[name="stripeToken"]').length is 0 and $('#es-existing').val() isnt 'yes'
             stripe.open({
                 email: $('#stripe-form input[type=email]').val()
                 amount: '100'
                 description: 'Saved card authorization'
+                currency: 'GBP'
             })
             false
 
