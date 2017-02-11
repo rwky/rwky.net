@@ -14,3 +14,4 @@ module.exports =
     contacts: [
     ]
     slack_url: ''
+    captcha_secret: -> 'test'
