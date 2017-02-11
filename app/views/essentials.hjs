@@ -34,8 +34,8 @@ Please complete the following form to request an essentials server
     <option value="centos">CentOS 7</option>
     <option value="ubuntu">Ubuntu 16.04</option>
 </select>
-<p><small>CentOS provides PHP 5.4.16 and MariaDB 5.5 (compatible with MySQL 5.5) and is supported until 2024.<br>
-Ubuntu provides PHP 7.0.13 and MariaDB 10.0.29 (compatible with MySQL 5.6) and is supported until 2021.<br>
+<p><small>CentOS provides PHP 5.4.16, Ruby 2.0.0, Python 2.7.5, NodeJS 6 and MariaDB 5.5 (compatible with MySQL 5.5) and is supported until 2024.<br>
+Ubuntu provides PHP 7.0.13, Ruby 2.3.0, Python 2.7.11, NodeJS 6 and MariaDB 10.0.29 (compatible with MySQL 5.6) and is supported until 2021.<br>
 If you are unsure which to choose check your software requirements, if your software is compatible with both I suggest CentOS due to the longer support cycle.</small></p>
 </div>
 <div class="form-group">
@@ -67,14 +67,14 @@ If you are unsure which to choose check your software requirements, if your soft
 <div class="panel panel-default">
     <div class="panel-heading">About</div>
     <div class="panel-body">
-    An essentials server is designed for hosting sites such as Wordpress Blogs, small e-commerce sites (which use 3rd parties such as Stripe for credit card processing), forums, Drupal sites and anything else that runs on PHP and MySQL.
+    An essentials server is designed for hosting sites such as Wordpress Blogs, small e-commerce sites (which use 3rd parties such as Stripe for credit card processing), forums, Drupal sites, Django sites, Flask Sites, Express Sites, Rails sites and anything else that runs on PHP/Ruby/Python/NodeJS and MySQL.
     </div>
 </div> 
 <div class="panel panel-default">
     <div class="panel-heading">What you will get</div>
     <div class="panel-body">
         <ul>
-        <li>A managed LAMP (Linux-Apache-MySQL-PHP) server</li>
+        <li>A managed LAM[PPRN] (Linux-Apache-MySQL-[PHP/Python/Ruby/NodeJS]) server</li>
         <li>Software and security updates</li>
         <li>Daily backups to an off-site location</li>
         <li>Root SSH access</li>
