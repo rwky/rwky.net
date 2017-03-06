@@ -206,8 +206,7 @@ module.exports = (app) ->
 
         retry = (f) ->
             async.retry retry_ops, f
-            , (err, result) ->
-                console.log arguments
+            
         if req.path.indexOf('debug') is -1
             retry (c) ->
                 request.post app.config.sms_url, { json: true, headers: { "x-api-key": app.config.sms_api_key }, body: { msg: msg.slice(0,100) } }, (err, httpResponse, body) ->

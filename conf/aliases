@@ -1,9 +1,0 @@
-mailer-daemon: postmaster
-postmaster: root
-nobody: root
-hostmaster: root
-webmaster: root
-abuse: root
-www-data: root
-root: admin@rwky.net
-

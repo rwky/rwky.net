@@ -1,12 +1,9 @@
-- name: Install rwky.net
-  hosts: "{{ target }}"
+---
+- hosts: "{{ target }}"
   gather_facts: False
   sudo: yes
   roles:
     - { role: ansible, tags: ["ansible"] }
     - { role: iptables, tags: ["iptables"] }
-    - { role: system, tags: ["system"] }
     - { role: ssh, tags: ["ssh"] }
     - { role: rwky_net, tags: ["rwky_net"] }
-  tasks:
-    command: reboot

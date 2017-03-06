@@ -2,30 +2,20 @@
 
 set -e
 
-mkdir -p /srv/pypy/bin
-
-if [ -e /srv/pypy/.bootstrapped ]; then
+if [ -f /opt/bin/python ]; then
   exit 0
 fi
 
+mkdir -p /srv/pypy
 cd /srv/pypy
 
-PYPY_VERSION=2.4.0
+echo "73014c3840609a62c0984b9c383652097f0a8c52fb74dd9de70d9df2a9a743ff  pypy-5.3.1-linux_x86_64-portable.tar.bz2" > /srv/pypy/shas.txt
+wget -q https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.3.1-linux_x86_64-portable.tar.bz2
+sha256sum -c /srv/pypy/shas.txt
+tar -xf pypy-5.3.1-linux_x86_64-portable.tar.bz2 
 
-wget https://bitbucket.org/pypy/pypy/downloads/pypy-$PYPY_VERSION-linux64.tar.bz2
-tar -xf pypy-$PYPY_VERSION-linux64.tar.bz2
-ln -s pypy-$PYPY_VERSION-linux64 pypy
+mkdir -p /opt/bin
+ln -sf /srv/pypy/pypy-5.3.1-linux_x86_64-portable/bin/pypy /opt/bin/python
+chmod +x /opt/bin/python
+/opt/bin/python --version
 
-## library fixup
-mkdir pypy/lib
-ln -s /lib64/libncurses.so.5.9 /srv/pypy/pypy/lib/libtinfo.so.5
-
-cat > /srv/pypy/bin/python <<EOF
-#!/bin/bash
-LD_LIBRARY_PATH=/srv/pypy/pypy/lib:$LD_LIBRARY_PATH /srv/pypy/pypy/bin/pypy "\$@"
-EOF
-
-chmod +x /srv/pypy/bin/python
-/srv/pypy/bin/python --version
-
-touch /srv/pypy/.bootstrapped
