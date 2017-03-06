@@ -8,7 +8,7 @@
             "cookie-parser":"*",
             "csurf":"*",
             "hjs": "*",
-            "nodemailer":"*",
+            "nodemailer":"2.x",
             "nodemailer-smtp-transport":"*",
             "stripe":"*",
             "async":"*",
