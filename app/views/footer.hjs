@@ -4,6 +4,7 @@
 
 <footer>
 All quotes are free.<br>
+<a href="/">Home</a> | 
 <a href="/tos">Terms of Service</a> | 
 <a href="/privacy">Privacy Policy</a> | 
 <a href="/admin_at_rwky.net.sig">GPG Signature</a> | 
@@ -11,8 +12,6 @@ All quotes are free.<br>
 <a href="/cv.html">Curriculum Vitae</a> | 
 <a href="https://github.com/rwky" target="_blank" rel="noopener">GitHub</a> | 
 <a href="/pay-online">Pay Online</a> | 
-<a href="/affiliates">Affiliates</a> | 
-<a href="/open-source">Open Source</a>
 <br>
 &copy; rwky.net
 <br>

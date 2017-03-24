@@ -4,61 +4,15 @@ module.exports = (app) ->
     stripe = require('stripe')(app.config.stripe)
     async = require 'async'
     request = require 'request'
-    crypto =  require 'crypto'
-    randNum = ->
-        min = 1
-        max = 999999
-        Math.floor Math.random() * (max - min + 1) + min
-    randOperator = ->
-        operators  = '*-+/'
-        operators.charAt(Math.floor(Math.random() * operators.length))
-    hmacCaptcha = (val) ->
-        hmac = crypto.createHmac 'sha256', app.config.captcha_secret()
-        hmac.update val.toString()
-        hmac.digest 'hex'
-        
-    app.all '*', (req, res, next) ->
-        res.locals.captcha = randNum() + ' ' + randOperator() + ' ' + randNum() + ' ' + randOperator() + ' ' + randNum()
-        res.locals.captcha_hmac = hmacCaptcha Math.round(eval(res.locals.captcha))
-        next()
     
     app.get '/', (req, res) ->
         res.render 'index', bodyClass: 'index'
-    
-    app.post '/', (req, res) ->
-        ops =
-            from: app.config.from_email
-            to: app.config.to_email
-            subject: 'rwky.net contact form'
-            text: 'A message from ' + req.body.email + "\r\n" + req.body.message
-        contact_msg =
-            msg: 'Email sent, you should receive a reply within a few days, normally less.'
-            alert: 'success'
-        captcha = parseInt req.body.captcha, 10
-        if isNaN(captcha) or hmacCaptcha(captcha) isnt req.body.captcha_hmac
-            contact_msg =
-                msg: 'Captcha failed'
-                alert: 'danger'
-            res.render 'index', bodyClass: 'index', contact_msg: contact_msg
-        else
-            mailer.sendMail ops, (err) ->
-                if err?
-                    contact_msg =
-                        msg: 'There was an error sending your mail, please try again'
-                        alert: 'danger'
-            res.render 'index', bodyClass: 'index', contact_msg: contact_msg
-            
-    app.get '/open-source', (req, res) ->
-        res.render 'open-source', bodyClass: 'open-source'
     
     app.get '/tos', (req, res) ->
         res.render 'tos', bodyClass: 'tos'
             
     app.get '/privacy', (req, res) ->
         res.render 'privacy', bodyClass: 'privacy'
-    
-    app.get '/affiliates', (req, res) ->
-        res.render 'affiliates', bodyClass: 'affiliates'
     
     app.get '/save-card', (req, res) ->
         name = req.query.name or ''

@@ -34,20 +34,7 @@
 </div>
 <div class="col-sm-6">
 <h3>Contact</h3>
-{{#contact_msg}}
-<div class="alert alert-{{contact_msg.alert}}"><b>{{contact_msg.msg}}</b></div>
-{{/contact_msg}}
-<p>Every situation is different, please use the form below and let me know what you need and I'll get in touch. Talking to me is free!</p>
-<form role="form" action="/" method="post">
-<label for="contact-email">Email Address</label> <input id="contact-email" required="required" type="email" name="email" class="form-control" placeholder="Enter email"><br>
-<label for="contact-message">Message</label> <textarea id="contact-message" required="required" name="message" class="form-control"></textarea><br>
-Please complete the following maths challenge to prove you're human (and can do basic maths or have a calculator).<br>
-{{captcha}} = <input class="form-control" required="required" type="number" name="captcha"><br>
-(please round to the nearest whole number).
-<input type="hidden" name="captcha_hmac" value="{{captcha_hmac}}">
-<br>
-<button type="submit" class="btn btn-primary">Send</button>
-</form>
+<p>Email me at admin {at} rwky {dot} net</p>
 </div>
 </div>
 {{>footer}}
