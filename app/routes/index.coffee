@@ -81,8 +81,16 @@ module.exports = (app) ->
     app.get '/pay-online', (req, res) ->
         amount = req.query.amount or 0
         invoice = req.query.invoice or ''
-        currency = req.query.currency or 'GBP'
-        currencySym = if currency is 'GBP' then '&pound;' else '&euro;'
+        if req.query.currency is 'USD'
+            currency = 'USD'
+            currencySym = '$'
+        else if req.query.currency is 'EUR'
+            currency = 'EUR'
+            currencySym = '&euro;'
+        else
+            currency = 'GBP'
+            currencySym = '&pound;'
+
         res.render 'pay-online', {
             bodyClass: 'pay-online'
             amount: amount
@@ -93,8 +101,16 @@ module.exports = (app) ->
         }
     
     app.post '/pay-online/stripe', (req, res) ->
-        currency = if req.body.currency is 'EUR' then 'EUR' else 'GBP'
-        currencySym = if currency is 'GBP' then '&pound;' else '&euro;'
+        if req.body.currency is 'USD'
+            currency = 'USD'
+            currencySym = '$'
+        else if req.body.currency is 'EUR'
+            currency = 'EUR'
+            currencySym = '&euro;'
+        else
+            currency = 'GBP'
+            currencySym = '&pound;'
+
         ops =
             currency: currency
             amount: parseFloat(req.body.amount) * 100
