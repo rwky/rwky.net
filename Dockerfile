@@ -4,8 +4,7 @@ RUN apt-get update && \
 apt-get -y install nodejs exim4-daemon-light && \
 apt-get clean && rm -rf /var/lib/apt/lists/* && \
 rm -rf /etc/service/nginx/down && \
-rm -rf /etc/service/rsyslog/down && \
-touch /etc/service/cron/down 
+rm -rf /etc/service/rsyslog/down
 ADD ./conf/nginx /etc/nginx/conf.d/rwky.net.conf
 RUN npm -g install grunt-cli bower
 ADD app/npm-shrinkwrap.json /home/app/
