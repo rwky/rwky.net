@@ -97,7 +97,7 @@ module.exports = (app) ->
             invoice: invoice
             currency: currency
             currencySym: currencySym
-            show_paypal: currency is 'GBP'
+            show_paypal: currency is 'GBP' and req.query.paypal?
         }
     
     app.post '/pay-online/stripe', (req, res) ->
