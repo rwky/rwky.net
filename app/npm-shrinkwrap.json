@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "dependencies": {
     "async": {
-      "version": "2.4.1",
-      "from": "async@*",
-      "resolved": "https://registry.npmjs.org/async/-/async-2.4.1.tgz",
+      "version": "2.5.0",
+      "from": "async@2.5.0",
+      "resolved": "https://registry.npmjs.org/async/-/async-2.5.0.tgz",
       "dependencies": {
         "lodash": {
           "version": "4.17.4",
@@ -3350,9 +3350,9 @@
       }
     },
     "stripe": {
-      "version": "4.23.0",
-      "from": "stripe@*",
-      "resolved": "https://registry.npmjs.org/stripe/-/stripe-4.23.0.tgz",
+      "version": "4.23.1",
+      "from": "stripe@4.23.1",
+      "resolved": "https://registry.npmjs.org/stripe/-/stripe-4.23.1.tgz",
       "dependencies": {
         "bluebird": {
           "version": "2.11.0",
