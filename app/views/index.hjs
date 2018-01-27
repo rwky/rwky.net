@@ -1,40 +1,6 @@
 {{>header}}
-<div class="jumbotron">
-<div class="container">
 <h1>rwky.net</h1>
-<p>Making bits of the internet work for over a decade - simple, no fuss server administration and programming.</p>
-</div>
-</div>
-<div class="container">
-<div class="col-sm-3">
-<h3>Server Administration</h3>
-<ul>
-<li>Server Setup</li>
-<li>Server Monitoring</li>
-<li>Server Backups</li>
-<li>Server Hardening</li>
-<li>Clouds (AWS, Google etc)</li>
-<li>High Availablity</li>
-<li>And more</li>
-</ul><p>
-<p>If you only need a basic LAM[PPRN] (Linux-Apache-MySQL-[PHP/Python/Ruby/NodeJS]) set up then my 
-<a href="/essentials">Essentials Servers</a> may suit you.</p>
-</div>
-<div class="col-sm-3">
-<h3>Programming</h3>
-<ul>
-<li>Node.js</li>
-<li>Coffeescript</li>
-<li>PHP</li>
-<li>Python</li>
-<li>Redis</li>
-<li>MySQL</li>
-<li>And more</li>
-</ul><p>
-</div>
-<div class="col-sm-6">
-<h3>Contact</h3>
-<p>Email me at admin {at} rwky {dot} net</p>
-</div>
-</div>
+<h2>Making bits of the internet work for over a decade - simple, no fuss server administration and programming.</h2>
+<p>I do <b>Linux</b> server administration and <b>Web/Linux</b> programming in multiple languages, 
+email me at <a href="mailto:admin@rwky.net?subject=rwky.net contact">admin@rwky.net</a> to see if I can help you.</p>
 {{>footer}}

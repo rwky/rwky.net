@@ -1,32 +1,32 @@
 {
     "name": "rwky.net",
-        "version": "0.0.1",
-        "private": true,
-        "dependencies": {
-            "express": "4.x",
-            "body-parser":"*",
-            "cookie-parser":"*",
-            "csurf":"*",
-            "hjs": "*",
-            "nodemailer":"2.x",
-            "nodemailer-smtp-transport":"*",
-            "stripe":"*",
-            "async":"*",
-            "request":"*"
-        },
-        "devDependencies": {
-            "grunt": "*",
-            "grunt-contrib-coffee": "*",
-            "grunt-contrib-watch": "*",
-            "grunt-contrib-stylus": "*",
-            "grunt-concurrent": "*",
-            "grunt-contrib-uglify": "*",
-	    "grunt-shell": "*",
-            "coffeelint-variable-scope": "*",
-            "coffeelint": "*"
-        },
-        "repository" :{
-            "type" : "git",
-            "url" : "https://github.com/rwky/rwky.net.git"
-        }
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "4.x",
+        "body-parser": "*",
+        "cookie-parser": "*",
+        "csurf": "*",
+        "hjs": "*",
+        "nodemailer": "*",
+        "nodemailer-smtp-transport": "*",
+        "stripe": "*",
+        "async": "*",
+        "request": "*"
+    },
+    "devDependencies": {
+        "grunt": "*",
+        "grunt-contrib-coffee": "*",
+        "grunt-contrib-watch": "*",
+        "grunt-contrib-stylus": "*",
+        "grunt-concurrent": "*",
+        "grunt-contrib-uglify": "*",
+        "grunt-shell": "*",
+        "coffeelint-variable-scope": "*",
+        "coffeelint": "*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rwky/rwky.net.git"
+    }
 }

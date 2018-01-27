@@ -7,15 +7,8 @@
         <meta name="author" content="Rowan Wookey admin@rwky.net">
         <link rel="shortcut icon" href="/favicon.ico">
         <title>rwky.net - Server Administration and Programming made simple</title>
-
-        <!-- Bootstrap core CSS -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Bootstrap theme -->
-        <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
-        <!-- custom css -->
         <link href="/css/main.css" rel="stylesheet">
 
     </head>
 
     <body class="{{bodyClass}}">
-        <div class="container theme-showcase">

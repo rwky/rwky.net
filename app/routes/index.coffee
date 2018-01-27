@@ -17,7 +17,7 @@ module.exports = (app) ->
     app.get '/save-card', (req, res) ->
         name = req.query.name or ''
         email = req.query.email or ''
-        res.render 'save-card', bodyClass: 'save-card', name: name, email: email
+        res.render 'save-card', bodyClass: 'save-card', name: name, email: email, stripe: true
 
     app.post '/save-card', (req, res) ->
         email = req.body.email
@@ -76,11 +76,12 @@ module.exports = (app) ->
                     c()
         ], (err) ->
             unless err then msg = 'Card details saved!'
-            res.render 'save-card', bodyClass: 'save-card', err: err, msg: msg
+            res.render 'save-card', bodyClass: 'save-card', err: err, msg: msg, stripe: true
 
     app.get '/pay-online', (req, res) ->
         amount = req.query.amount or 0
         invoice = req.query.invoice or ''
+        email = req.query.email or ''
         if req.query.currency is 'USD'
             currency = 'USD'
             currencySym = '$'
@@ -95,9 +96,11 @@ module.exports = (app) ->
             bodyClass: 'pay-online'
             amount: amount
             invoice: invoice
+            email: email
             currency: currency
             currencySym: currencySym
-            show_paypal: currency is 'GBP' and req.query.paypal?
+            showPaypal: currency is 'GBP' and req.query.paypal?
+            stripe: true
         }
     
     app.post '/pay-online/stripe', (req, res) ->
@@ -137,9 +140,11 @@ module.exports = (app) ->
                 msg: msg
                 amount: req.body.amount
                 invoice: req.body.invoice
+                email: req.body.email
                 currency: currency
                 currencySym: currencySym
-                show_paypal: currency is 'GBP'
+                showPaypal: currency is 'GBP'
+                stripe: true
             }
             
 
@@ -199,22 +204,3 @@ module.exports = (app) ->
                 if err then return c err
                 c()
         res.render 'ecf', { msg: 'Message sent' }
-
-    app.get '/essentials', (req, res) ->
-        res.render 'essentials', bodyClass: 'essentials'
-
-    app.post '/essentials', (req, res) ->
-        ops =
-            from: app.config.from_email
-            to: app.config.to_email
-            subject: 'Essentials server request'
-            text: JSON.stringify(req.body)
-        contact_msg =
-            msg: "Since I like to add a personal touch to my services, I'll email you as soon as possible to confirm your request"
-            alert: 'success'
-        mailer.sendMail ops, (err) ->
-            if err?
-                contact_msg =
-                    msg: 'There was an error sending your request, please try again'
-                    alert: 'danger'
-            res.render 'essentials', bodyClass: 'essentials', contact_msg: contact_msg

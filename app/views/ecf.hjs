@@ -2,11 +2,11 @@
 <div class="container">
 <h1>Emergency contact form</h1>
 <div class="col-md-12">
-{{#msg}}<div class="alert alert-success">{{msg}}</div>{{/msg}}
-<div class="alert alert-warning">Please only use this form if there is a real emergency. Do <b>not</b> test this form.</div>
+{{#msg}}<div class="alert">{{msg}}</div>{{/msg}}
+<p>Please only use this form if there is a real emergency. Do <b>not</b> test this form.</p>
 <form action="" method="post" role="form">
-<textarea class="form-control" name="message"></textarea>
-<button type="submit" class="btn btn-primary">Send</button>
+<textarea name="message" cols="50" rows="10"></textarea><br>
+<button type="submit">Send</button>
 </form>
 </div>
 </div>
