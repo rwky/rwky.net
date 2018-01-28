@@ -1,0 +1,10 @@
+[Unit]
+Description=clean docker
+
+[Timer]
+OnBootSec=15m
+OnUnitInactiveSec=15m
+Persistent=true     
+ 
+[Install]
+WantedBy=timers.target

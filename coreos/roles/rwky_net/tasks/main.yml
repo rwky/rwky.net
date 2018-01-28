@@ -1,4 +1,13 @@
 ---
+- name: Copy docker cleaning service
+  copy: src=clean-docker.service dest=/etc/systemd/system/clean-docker.service
+
+- name: Copy docker cleaning timer 
+  copy: src=clean-docker.timer dest=/etc/systemd/system/clean-docker.timer
+
+- name: Enable docker cleaning timer 
+  service: name=clean-docker.timer state=restarted enabled=yes
+
 - name: Copy rwky_net service 
   copy: src=rwky_net.service dest=/etc/systemd/system/rwky_net.service
 
