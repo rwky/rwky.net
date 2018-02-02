@@ -8,5 +8,13 @@ server {
     passenger_app_env dev;
     passenger_startup_file app.js;
     passenger_app_type node;
+
+    location ~* ^/(js|css)/[0-9]+/main\.(js|css)$ {
+        etag on;
+        expires max;
+        try_files /$1/main.$2 =404;
+        passenger_enabled off;
+    }
+
 }
 

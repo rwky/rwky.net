@@ -15,6 +15,7 @@ app.use require('body-parser').json()
 app.use require('body-parser').raw(type: "*/*")
 
 app.use (req, res, next) ->
+    res.locals.version = require './version'
     # add idle timeout handlers. this is when NO data is sent/recieved 
     res.setTimeout 180000, ->
         res.status(408)

@@ -64,15 +64,10 @@ module.exports = (grunt) ->
                     ].join(' ')
                 options:
                     stdout: true
-                    stderr: true
-        uglify:
-            target:
-                files:
-                    'public/js/main.min.js': 'public/js/main.js'
-            options:
-                compress:
-                    warnings: true
-                    
+            version:
+                command: """
+                echo 'module.exports = #{new Date().getTime()};' > version.js
+                """
 
     grunt.event.on 'watch', (action, filepath) ->
         files = [{}]
@@ -80,12 +75,11 @@ module.exports = (grunt) ->
         grunt.config ['coffee', 'static', 'files'], files
                       
     grunt.loadNpmTasks('grunt-contrib-coffee')
-    grunt.loadNpmTasks('grunt-contrib-uglify')
     grunt.loadNpmTasks('grunt-contrib-watch')
     grunt.loadNpmTasks('grunt-concurrent')
     grunt.loadNpmTasks('grunt-contrib-stylus')
     grunt.loadNpmTasks('grunt-shell')
 
-    grunt.registerTask "dist", ["coffee", "stylus", "uglify"]
+    grunt.registerTask "dist", ["coffee", "stylus", "shell:version"]
     grunt.registerTask "default", ["coffee", "stylus", "shell:restart", "concurrent:target"]
 

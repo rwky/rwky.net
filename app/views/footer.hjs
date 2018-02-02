@@ -26,7 +26,7 @@ Programming and server management since 2005.
 
 {{#stripe}}
 <script src="//checkout.stripe.com/v2/checkout.js"></script>
-<script src="/js/main.js"></script>
+<script src="/js/{{version}}/main.js"></script>
 {{/stripe}}
 </body>
 </html>
