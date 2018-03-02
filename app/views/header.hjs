@@ -7,8 +7,9 @@
         <meta name="author" content="Rowan Wookey admin@rwky.net">
         <link rel="shortcut icon" href="/favicon.ico">
         <title>rwky.net - Server Administration and Programming made simple</title>
-        <link href="/css/{{version}}/main.css" rel="stylesheet">
+        <link href="/css/{{version}}/bootstrap.css" rel="stylesheet">
 
     </head>
 
     <body class="{{bodyClass}}">
+        <main role="main" class="container">

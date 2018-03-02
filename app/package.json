@@ -18,8 +18,6 @@
         "grunt": "*",
         "grunt-contrib-coffee": "*",
         "grunt-contrib-watch": "*",
-        "grunt-contrib-stylus": "*",
-        "grunt-concurrent": "*",
         "grunt-shell": "*",
         "coffeelint-variable-scope": "*",
         "coffeelint": "*"

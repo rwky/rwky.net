@@ -1,18 +1,30 @@
 {{>header}}
 <h1>Save Credit/Debit Card Details</h1>
-{{#err}}<div class="alert">{{err}}</div>{{/err}}
-{{#msg}}<div class="alert">{{msg}}</div>{{/msg}}
-<noscript><b>Stripe requires Javascript enabled, please enable it to use this form</b><br></noscript>
-Your card will be authorized for £1.00 but will not be charged.
-<form action="/save-card" method="post" id="stripe-form" role="form">
-<label>Name (or company): </label><input type="text" required="required" name="name" value="{{name}}"><br>
-<input type="hidden" name="currency" id="stripe-currency" value="gbp">
-<label>Email: </label><input required="required" type="email" name="email" id="stripe-email" value="{{email}}">
-<input type="hidden" name="invoice" id="stripe-invoice" value="Save card details"><br />
-<input type="hidden" id="stripe-amount" name="amount" value="1">
-<button>Enter Card Details</button>
-</form>
-Powered by <a href="http://www.stripe.com" target="_blank">Stripe</a><br>
-</div>
+<div class="card">
+    <div class="card-body">
+        {{#err}}<div class="alert alert-danger">{{err}}</div>{{/err}}
+        {{#msg}}<div class="alert alert-success">{{msg}}</div>{{/msg}}
+        <noscript><b>Stripe requires Javascript enabled, please enable it to use this form</b><br></noscript>
+        Your card will be authorized for £1.00 but will not be charged.
+        <form action="/save-card" method="post" id="stripe-form" role="form">
+        <div class="row form-group">
+            <label class="col-form-label col-sm-3" for="stripe-name">Name (or company):</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="email" name="email" id="stripe-name" value="{{name}}">
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="col-form-label col-sm-3" for="stripe-email">Email:</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="email" name="email" id="stripe-email" value="{{email}}">
+            </div>
+        </div>
+        <input type="hidden" name="currency" id="stripe-currency" value="gbp">
+        <input type="hidden" name="invoice" id="stripe-invoice" value="Save card details"><br />
+        <input type="hidden" id="stripe-amount" name="amount" value="1">
+        <button class="btn btn-primary">Enter Card Details</button>
+        </form>
+        Powered by <a href="http://www.stripe.com" target="_blank">Stripe</a><br>
+    </div>
 </div>
 {{>footer}}

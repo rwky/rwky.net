@@ -1,6 +1,8 @@
 
-
-<footer>
+</main>
+<hr>
+<footer class="footer text-center">
+<div class="container">
 All quotes are free.<br>
 <a href="/">Home</a> | 
 <a href="/tos">Terms of Service</a> | 
@@ -22,6 +24,7 @@ Programming and server management since 2005.
 <a href="https://boincstats.com/" target="_blank" rel="noopener">
     <img src="https://boincstats.com/signature/-1/user/3584990/project/sig.png" alt="Boinc Stats">
 </a>    
+</div>
 </footer>
 
 {{#stripe}}

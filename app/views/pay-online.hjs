@@ -1,38 +1,80 @@
 {{>header}}
-<div class="container">
 <h1>Pay Online</h1>
-<div class="col-md-4">
 <noscript><b>Stripe and Paypal require Javascript enabled, please enable it to use this form</b><br></noscript>
-<h4>Pay with Credit/Debit card</h4>
-{{#err}}<div class="alert">{{err}}</div>{{/err}}
-{{#msg}}<div class="alert">{{msg}}</div>{{/msg}}
-<form action="/pay-online/stripe" method="post" id="stripe-form" role="form">
-Email: <input type="email" name="email" id="stripe-email" value="{{email}}"><br>
-Invoice number: <input type="text" name="invoice" id="stripe-invoice" value="{{invoice}}"><br>
-Amount: <label>{{{currencySym}}}</label><input type="text" id="stripe-amount" name="amount" value="{{amount}}">
-<input type="hidden" name="currency" id="stripe-currency" value="{{currency}}"><br />
-<button type="submit" class="btn btn-primary">Pay with Credit/Debit Card</button>
-</form>
-Powered by <a href="http://www.stripe.com" target="_blank">Stripe</a><br>
+<div class="card">
+    <div class="card-header">
+        Pay with Credit/Debit card
+    </div>
+    <div class="card-body">
+        {{#err}}<div class="alert alert-danger">{{err}}</div>{{/err}}
+        {{#msg}}<div class="alert alert-success">{{msg}}</div>{{/msg}}
+        <form action="/pay-online/stripe" method="post" id="stripe-form" role="form">
+        <div class="row form-group">
+            <label class="col-form-label col-sm-3" for="stripe-email">Email:</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="email" name="email" id="stripe-email" value="{{email}}">
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="col-form-label col-sm-3" for="stripe-invoice">Invoice number:</label> 
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="invoice" id="stripe-invoice" value="{{invoice}}">
+            </div>
+        </div>
+        <div class="row form-group">
+            <label class="col-form-label col-sm-3" for="stripe-amount">Amount:</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">{{{currencySym}}}</div>
+                    </div>
+                    <input class="form-control" type="text" id="stripe-amount" name="amount" value="{{amount}}">
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="currency" id="stripe-currency" value="{{currency}}"><br>
+        <button type="submit" class="btn btn-primary">Pay with Credit/Debit Card</button>
+        </form>
+        Powered by <a href="http://www.stripe.com" target="_blank">Stripe</a><br>
+    </div>
 </div>
-<div class="col-md-2"></div>
 {{#showPaypal}}
-<div class="col-md-4">
-<h4>Pay with Paypal</h4>
-<form role="form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_xclick">
-<input type="hidden" name="business" value="{{paypal}}">
-<input type="hidden" name="lc" value="GB">
-Invoice number: <input type="text" name="item_name" value="{{invoice}}"><br />
-Amount: <label>{{{currencySym}}}</label><input type="text" name="amount" value="{{amount}}">
-<input type="hidden" name="currency_code" value="{{currency}}"><br />
-<input type="hidden" name="button_subtype" value="services">
-<input type="hidden" name="no_note" value="0">
-<input type="hidden" name="cn" value="Add special instructions to the seller">
-<input type="hidden" name="no_shipping" value="2">
-<input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHosted">
-<button>Pay with Paypal</button>
-</form>
+<div class="card mt-2">
+<div class="card-header">
+    Pay with Paypal
+</div>
+    <div class="card-body">
+        <form role="form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="{{paypal}}">
+            <input type="hidden" name="lc" value="GB">
+            <div class="row form-group">
+                <label class="col-form-label col-sm-3" for="paypal-invoice">Invoice number:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="item_name" value="{{invoice}}" id="paypal-invoice" class="form-control">
+
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-form-label col-sm-3" for="paypal-amount">Amount:</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">{{{currencySym}}}</div>
+                        </div>
+                        <input class="form-control" type="text" id="paypal-amount" name="amount" value="{{amount}}">
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="currency_code" value="{{currency}}"><br />
+            <input type="hidden" name="button_subtype" value="services">
+            <input type="hidden" name="no_note" value="0">
+            <input type="hidden" name="cn" value="Add special instructions to the seller">
+            <input type="hidden" name="no_shipping" value="2">
+            <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHosted">
+            <button class="btn btn-primary">Pay with Paypal</button>
+        </form>
+    </div>
 </div>
 {{/showPaypal}}
 </div>

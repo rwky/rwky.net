@@ -25,30 +25,12 @@ module.exports = (grunt) ->
                 src: ['*.coffee']
                 dest: 'config/'
                 ext: '.js'
-                    
-        stylus:
-            compile:
-                files:
-                    'public/css/main.css': ['public/css/main.styl']
-            
         watch:
             scripts:
                 files: ['routes/*.coffee', '*.coffee', 'public/js/*.coffee']
                 tasks: ['coffee:static', 'shell:restart']
                 options:
                     nospawn: true
-            css:
-                files: ['public/css/main.styl']
-                tasks: ['stylus']
-                options:
-                    nospawn: true
-                    
-        concurrent:
-            target:
-                tasks: ['watch:scripts', 'watch:css']
-                options:
-                    logConcurrentOutput: true
-                    
         shell:
             restart:
                 command: "passenger-config restart-app --ignore-passenger-not-running /home"
@@ -76,10 +58,8 @@ module.exports = (grunt) ->
                       
     grunt.loadNpmTasks('grunt-contrib-coffee')
     grunt.loadNpmTasks('grunt-contrib-watch')
-    grunt.loadNpmTasks('grunt-concurrent')
-    grunt.loadNpmTasks('grunt-contrib-stylus')
     grunt.loadNpmTasks('grunt-shell')
 
-    grunt.registerTask "dist", ["coffee", "stylus", "shell:version"]
-    grunt.registerTask "default", ["coffee", "stylus", "shell:restart", "concurrent:target"]
+    grunt.registerTask "dist", ["coffee", "shell:version"]
+    grunt.registerTask "default", ["coffee", "shell:restart", "watch:scripts"]
 
