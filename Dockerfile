@@ -9,7 +9,7 @@ rm -rf /etc/service/nginx/down && \
 rm -rf /etc/service/rsyslog/down
 ADD ./conf/nginx /etc/nginx/conf.d/rwky.net.conf
 RUN npm -g install grunt-cli
-ADD app/npm-shrinkwrap.json /home/app/
+ADD app/package-lock.json /home/app/
 ADD app/package.json /home/app/
 RUN cd /home/app && npm install
 ADD app/ /home/app

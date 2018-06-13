@@ -3,24 +3,24 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
-        "express": "4.x",
+        "async": "*",
         "body-parser": "*",
         "cookie-parser": "*",
         "csurf": "*",
+        "express": "*",
         "hjs": "*",
         "nodemailer": "*",
         "nodemailer-smtp-transport": "*",
-        "stripe": "*",
-        "async": "*",
-        "request": "*"
+        "request": "*",
+        "stripe": "*"
     },
     "devDependencies": {
+        "coffeelint": "*",
+        "coffeelint-variable-scope": "*",
         "grunt": "*",
         "grunt-contrib-coffee": "*",
         "grunt-contrib-watch": "*",
-        "grunt-shell": "*",
-        "coffeelint-variable-scope": "*",
-        "coffeelint": "*"
+        "grunt-shell": "*"
     },
     "repository": {
         "type": "git",
