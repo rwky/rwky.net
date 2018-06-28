@@ -1,0 +1,12 @@
+[Unit]
+Description=Turn on swap
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/sbin/swapon /swapfile
+ExecStop=/usr/sbin/swapoff /swapfile
+
+[Install]
+WantedBy=multi-user.target
+

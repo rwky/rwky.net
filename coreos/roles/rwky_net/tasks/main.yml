@@ -1,4 +1,42 @@
 ---
+- name: Make swap file
+  command: creates=/swapfile dd if=/dev/zero of=/swapfile bs=1M count=1024
+  register: swapcreated
+
+- name: Set swap perms
+  file: state=file mode=0600 owner=root group=root dest=/swapfile
+
+- name: Format swap
+  command: mkswap /swapfile
+  when: swapcreated.changed
+
+- name: Copy swap service 
+  copy: src=swap.service dest=/etc/systemd/system/swap.service
+  register: swapservice
+  
+- name: Reload systemd daemon 
+  command: systemctl daemon-reload
+  when: swapservice.changed
+ 
+- name: Enable swap service
+  service: name=swap.service state=started enabled=yes
+  when: swapservice.changed
+
+- name: Copy rwky.net config
+  synchronize: src=config/ dest=/srv/rwky.net/ links=no recursive=yes set_remote_user=no
+
+- name: Copy letsencrypt service 
+  copy: src=letsencrypt.service dest=/etc/systemd/system/letsencrypt.service
+
+- name: Enable letsencrypt service
+  service: name=letsencrypt.service state=restarted enabled=yes
+
+- name: Copy letsencrypt timer 
+  copy: src=letsencrypt.timer dest=/etc/systemd/system/letsencrypt.timer
+
+- name: Enable letsencrypt timer
+  service: name=letsencrypt.timer state=restarted enabled=yes
+
 - name: Copy docker cleaning service
   copy: src=clean-docker.service dest=/etc/systemd/system/clean-docker.service
 
@@ -10,9 +48,6 @@
 
 - name: Copy rwky_net service 
   copy: src=rwky_net.service dest=/etc/systemd/system/rwky_net.service
-
-- name: Copy rwky.net config
-  synchronize: src=config/ dest=/srv/rwky.net/ links=no recursive=yes set_remote_user=no
 
 - name: Enable rwky_net service
   service: name=rwky_net.service state=restarted enabled=yes
