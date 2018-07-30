@@ -9,10 +9,10 @@
         "csurf": "*",
         "express": "*",
         "hjs": "*",
-        "nodemailer": "*",
+        "nodemailer": "^4.6.7",
         "nodemailer-smtp-transport": "*",
         "request": "*",
-        "stripe": "*"
+        "stripe": "^6.5.0"
     },
     "devDependencies": {
         "coffeelint": "*",

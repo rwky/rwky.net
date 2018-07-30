@@ -1,6 +1,6 @@
 FROM rwky/phusion-passenger:latest 
 MAINTAINER Rowan Wookey <admin@rwky.net>
-RUN curl -sS -o node.sh https://deb.nodesource.com/setup_8.x && \
+RUN curl -sS -o node.sh https://deb.nodesource.com/setup_10.x && \
 bash node.sh && \
 apt-get update && \
 apt-get -y install nodejs exim4-daemon-light && \
