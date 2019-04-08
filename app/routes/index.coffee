@@ -4,6 +4,9 @@ module.exports = (app) ->
     stripe = require('stripe')(app.config.stripe)
     async = require 'async'
     request = require 'request'
+
+    ping = (msg, cb) ->
+        request.post app.config.slack_url, { json: true, body: { text: msg } }, cb
     
     app.get '/', (req, res) ->
         res.render 'index', bodyClass: 'index'
@@ -156,6 +159,14 @@ module.exports = (app) ->
         unless req.contact then return res.status(403).send 'Access denied'
         next()
     
+    app.post '/ping/' + app.config.ping_token, (req, res, next) ->
+        ping req.body.text, (err, httpResponse, body) ->
+            if err or body isnt 'ok'
+                console.error err
+                console.error body
+                return res.status(500).send('failed')
+            res.send('ok')
+
     app.get '/ecf/:id', (req, res) ->
         res.render 'ecf'
 
@@ -189,7 +200,7 @@ module.exports = (app) ->
                     unless body.status is 'queued' then return c body
                     c()
             retry (c) ->
-                request.post app.config.slack_url, { json: true, body: { text: msg } }, (err, httpResponse, body) ->
+                ping msg, (err, httpResponse, body) ->
                     if err then return c err
                     unless body is 'ok' then return c body
                     c()
