@@ -33,21 +33,23 @@ module.exports = (app) ->
 
         if req.query.success?
             if req.query.success is 'true'
-                stripeSuccess = '<div class="alert alert-success">Payment received, thank you!</div>'
+                stripeSuccess = '<div class="alert alert-success">
+                Payment received, thank you!</div>'
             else
-                stripeSuccess = '<div class="alert alert-danger">Payment failed, please try again!</div>'
+                stripeSuccess = '<div class="alert alert-danger">
+                Payment failed, please try again!</div>'
         
         res.render 'pay-online', {
-                bodyClass: 'pay-online'
-                amount: amount
-                invoice: invoice
-                email: email
-                currency: currency
-                currencySym: currencySym
-                showPaypal: currency is 'GBP' and req.query.paypal?
-                stripe: true
-                stripeSuccess: stripeSuccess
-            }
+            bodyClass: 'pay-online'
+            amount: amount
+            invoice: invoice
+            email: email
+            currency: currency
+            currencySym: currencySym
+            showPaypal: currency is 'GBP' and req.query.paypal?
+            stripe: true
+            stripeSuccess: stripeSuccess
+        }
     
     app.post '/pay-online/stripe', (req, res) ->
         if req.body.currency is 'USD'
@@ -67,13 +69,14 @@ module.exports = (app) ->
             customer_email: req.body.email
             line_items: [{
                 amount: parseFloat(req.body.amount) * 100
-                currency:currency.toLowerCase()
+                currency: currency.toLowerCase()
                 description: req.body.invoice
                 name: req.body.invoice
                 quantity: 1
             }]
 
         stripe.checkout.sessions.create ops, (err, session) ->
+            if err? then console.error err
             res.render 'pay-online', {
                 bodyClass: 'pay-online'
                 stripeSession: session?.id
@@ -131,7 +134,12 @@ module.exports = (app) ->
             
         if req.path.indexOf('debug') is -1
             retry (c) ->
-                request.post app.config.sms_url, { json: true, headers: { "x-api-key": app.config.sms_api_key }, body: { msg: msg.slice(0,100) } }, (err, httpResponse, body) ->
+                ops = {
+                    json: true,
+                    headers: { "x-api-key": app.config.sms_api_key },
+                    body: { msg: msg.slice(0, 100) }
+                }
+                request.post app.config.sms_url, ops, (err, httpResponse, body) ->
                     if err then return c err
                     unless body.status is 'queued' then return c body
                     c()

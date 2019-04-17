@@ -1,17 +1,23 @@
-fs = require 'fs'
-
 module.exports =
-    stripe : ''
-    cookie:'4ncygFPK'
-    paypal:'7Wq7KtEm'
-    from_email:'noreply@localhost'
-    to_email:'test@localhost'
-    session:'ZeLdu3b'
+    stripe: ''
+    stripe_pk: ''
+    paypal:''
+    from_email:''
     smtp:
-        host: 'localhost'
-    recaptcha_secret: 'QZYzvEz3'
+        host: ''
+        port: 
+        secure: 
+        auth:
+            user: ''
+            pass: ''
     ecf_email: ''
     contacts: [
+        { email: '', id: '' }
     ]
+    ping_token: ''
     slack_url: ''
-    captcha_secret: -> 'test'
+    sms_url: ''
+    sms_api_key: ''
+    stripe_success: ''
+    stripe_cancel: ''
+    stripe : ''
