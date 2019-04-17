@@ -5,9 +5,18 @@
     <div class="card-header">
         Pay with Credit/Debit card
     </div>
+    {{#stripeSession}}
+    <div class="alert alert-info">Redirecting you to stripe...</div>
+    <input type="hidden" id="stripe-session" value="{{stripeSession}}" data-pk="{{stripePk}}">
+    {{/stripeSession}}
     <div class="card-body">
-        {{#err}}<div class="alert alert-danger">{{err}}</div>{{/err}}
-        {{#msg}}<div class="alert alert-success">{{msg}}</div>{{/msg}}
+        {{#stripeErr}}
+        <div class="alert alert-danger">An error occurred please ensure you have completed the
+        email, invoice number and amount fields, if this problem persists please email admin@rwky.net</div>
+        {{/stripeErr}}
+        {{#stripeSuccess}}
+            {{{stripeSuccess}}}
+        {{/stripeSuccess}}
         <form action="/pay-online/stripe" method="post" id="stripe-form" role="form">
         <div class="row form-group">
             <label class="col-form-label col-sm-3" for="stripe-email">Email:</label>

@@ -17,73 +17,9 @@ module.exports = (app) ->
     app.get '/privacy', (req, res) ->
         res.render 'privacy', bodyClass: 'privacy'
     
-    app.get '/save-card', (req, res) ->
-        name = req.query.name or ''
-        email = req.query.email or ''
-        res.render 'save-card', bodyClass: 'save-card', name: name, email: email, stripe: true
-
-    app.post '/save-card', (req, res) ->
-        email = req.body.email
-        name = req.body.name
-        async.waterfall [
-            (c) ->
-                unless email? and name? and email and name
-                    return c 'You must enter your name and email'
-                c()
-            (c) ->
-                ops =
-                    email: req.body.email
-                    description: req.body.name
-                    card: req.body.stripeToken
-                stripe.customers.create ops, (err, customer) ->
-                    if err? then return c 'Unable to save card details, please try again (Error:1)'
-                    c null, customer
-            (customer, c) ->
-                ops =
-                    customer: customer.id
-                    source: customer.sources.data[0].id
-                    amount: '100'
-                    capture: false
-                    currency: 'gbp'
-                stripe.charges.create  ops, (err, charge) ->
-                    if err?
-                        if err.name is 'card_error'
-                            return c err.message
-                        ops =
-                            from: app.config.from_email
-                            to: app.config.to_email
-                            subject: 'rwky.net payment error'
-                            text: 'Payment error: ' + err.name + ' ' +
-                            err.message + ' for card authorization'
-                        mailer.sendMail ops
-                        return c 'Unable to save card details, please try again (Error:2)'
-                    c null, charge
-            (charge, c) ->
-                stripe.charges.createRefund charge.id,
-                { metadata: { auth_cancellation: 1} }, (err) ->
-                    if err?
-                        ops =
-                            from: app.config.from_email
-                            to: app.config.to_email
-                            subject: 'rwky.net payment error'
-                            text: 'Payment error: ' + err.name + ' ' +
-                            err.message + ' for card authorization'
-                        mailer.sendMail ops
-                    else
-                        ops =
-                            from: app.config.from_email
-                            to: app.config.to_email
-                            subject: 'rwky.net customer created'
-                            text: 'Customer created for ' + req.body.email + ' ' + req.body.name
-                        mailer.sendMail ops
-                    c()
-        ], (err) ->
-            unless err then msg = 'Card details saved!'
-            res.render 'save-card', bodyClass: 'save-card', err: err, msg: msg, stripe: true
-
     app.get '/pay-online', (req, res) ->
         amount = req.query.amount or 0
-        invoice = req.query.invoice or ''
+        invoice = req.query.invoice or 'Invoice'
         email = req.query.email or ''
         if req.query.currency is 'USD'
             currency = 'USD'
@@ -95,16 +31,23 @@ module.exports = (app) ->
             currency = 'GBP'
             currencySym = '&pound;'
 
+        if req.query.success?
+            if req.query.success is 'true'
+                stripeSuccess = '<div class="alert alert-success">Payment received, thank you!</div>'
+            else
+                stripeSuccess = '<div class="alert alert-danger">Payment failed, please try again!</div>'
+        
         res.render 'pay-online', {
-            bodyClass: 'pay-online'
-            amount: amount
-            invoice: invoice
-            email: email
-            currency: currency
-            currencySym: currencySym
-            showPaypal: currency is 'GBP' and req.query.paypal?
-            stripe: true
-        }
+                bodyClass: 'pay-online'
+                amount: amount
+                invoice: invoice
+                email: email
+                currency: currency
+                currencySym: currencySym
+                showPaypal: currency is 'GBP' and req.query.paypal?
+                stripe: true
+                stripeSuccess: stripeSuccess
+            }
     
     app.post '/pay-online/stripe', (req, res) ->
         if req.body.currency is 'USD'
@@ -118,36 +61,29 @@ module.exports = (app) ->
             currencySym = '&pound;'
 
         ops =
-            currency: currency
-            amount: parseFloat(req.body.amount) * 100
-            source: req.body.stripeToken
-            description: req.body.invoice
-        stripe.charges.create ops, (err, r) ->
-            if err?
-                if err.name is 'card_error'
-                    errmsg = err.message
-                else
-                    ops =
-                        from: app.config.from_email
-                        to: app.config.to_email
-                        subject: 'rwky.net payment error'
-                        text: 'Payment error: ' + err.name + ' ' + err.message +
-                        ' for invoice ' + req.body.invoice + ' with amount ' + req.body.amount
-                    mailer.sendMail ops
-                    errmsg = 'Unable to process transaction, please try again'
-            else
-                msg = 'Transaction processed successfully. Thank you!'
+            success_url: app.config.stripe_success
+            cancel_url: app.config.stripe_cancel
+            payment_method_types: ['card']
+            customer_email: req.body.email
+            line_items: [{
+                amount: parseFloat(req.body.amount) * 100
+                currency:currency.toLowerCase()
+                description: req.body.invoice
+                name: req.body.invoice
+                quantity: 1
+            }]
+
+        stripe.checkout.sessions.create ops, (err, session) ->
             res.render 'pay-online', {
                 bodyClass: 'pay-online'
-                err: errmsg
-                msg: msg
-                amount: req.body.amount
-                invoice: req.body.invoice
-                email: req.body.email
-                currency: currency
-                currencySym: currencySym
-                showPaypal: currency is 'GBP'
+                stripeSession: session?.id
+                stripePk: app.config.stripe_pk
                 stripe: true
+                stripeErr: err?
+                email: req.body.email
+                amount: req.body.amount
+                currency: req.body.currency
+                invoice: req.body.invoice
             }
             
 
