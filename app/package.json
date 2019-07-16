@@ -3,11 +3,11 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
-        "async": "3.x.x",
+        "async": "2.x.x",
         "body-parser": "^1.19.0",
         "express": "^4.17.1",
         "hjs": "*",
-        "nodemailer": "^6.2.1",
+        "nodemailer": "^6.3.0",
         "nodemailer-smtp-transport": "*",
         "request": "^2.88.0",
         "stripe": "7.x.x"
