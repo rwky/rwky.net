@@ -12,6 +12,24 @@ server {
 
 ssl_certificate /srv/letsencrypt/live/rwky.net/fullchain.pem;
 ssl_certificate_key /srv/letsencrypt/live/rwky.net/privkey.pem;
+
+ssl_session_timeout 1d;
+ssl_session_cache shared:MozSSL:10m;  # about 40000 sessions
+ssl_session_tickets off;
+
+# curl https://ssl-config.mozilla.org/ffdhe2048.txt > /path/to/dhparam.pem
+ssl_dhparam /srv/dhparam.pem;
+
+# intermediate configuration
+ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+
+# OCSP stapling
+ssl_stapling on;
+ssl_stapling_verify on;
+
+# replace with the IP address of your resolver
+resolver 8.8.8.8;
+
 server {
     listen 443 ssl http2 default_server;
     # HSTS (ngx_http_headers_module is required) (63072000 seconds = 2 years)
@@ -27,6 +45,15 @@ server {
 
     # HSTS (ngx_http_headers_module is required) (63072000 seconds = 2 years)
     add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";
+    # Block frames and secure resource origins
+    add_header X-Frame-Options "DENY";
+    add_header Content-Security-Policy "default-src 'none'; frame-ancestors: 'none'; base-uri: 'self'; form-action: 'self' 'https://*.stripe.com' 'https://*.paypal.com'; frame-src https://js.stripe.com; img-src 'self' https://boincstats.com https://static.fsf.org https://www.eff.org; script-src 'self' https://js.stripe.com/v3/; style-src 'self'";
+    # Don't send the referer header to other sites
+    add_header Referrer-Policy "same-origin";
+    # block scripts etc with wrong mime type
+    add_header X-Content-Type-Options "nosniff";
+    # Help prevent XSS
+    add_header X-XSS-Protection "1; mode=block";
 
     passenger_enabled on;
 
