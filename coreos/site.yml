@@ -1,9 +1,0 @@
----
-- hosts: "{{ target }}"
-  gather_facts: False
-  become: yes
-  roles:
-    - { role: ansible, tags: ["ansible"] }
-    - { role: iptables, tags: ["iptables"] }
-    - { role: ssh, tags: ["ssh"] }
-    - { role: rwky_net, tags: ["rwky_net"] }

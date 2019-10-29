@@ -1,7 +1,0 @@
-[Unit]
-Description=cleans docker images
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/bash -c "docker images | grep 'none' | xargs docker rmi" 
-

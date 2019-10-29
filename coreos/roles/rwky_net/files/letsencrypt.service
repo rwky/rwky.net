@@ -1,9 +1,0 @@
-[Unit]
-Description=letsencrypt
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/docker run --rm -v /srv/letsencrypt:/etc/letsencrypt -v /srv/letsencrypt-lib:/var/lib/letsencrypt -v /srv/rwky.net/aws:/root/.aws/credentials:ro -e AWS_PROFILE=route53 certbot/dns-route53 renew
-
-[Install]
-WantedBy=multi-user.target

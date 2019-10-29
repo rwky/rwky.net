@@ -1,6 +1,0 @@
----
-- name: Copy iptables
-  template: src=rules-save dest=/var/lib/iptables/rules-save
-
-- name: Enable iptables
-  service: name=iptables-restore enabled=yes

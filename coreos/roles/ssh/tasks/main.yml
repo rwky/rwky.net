@@ -1,6 +1,0 @@
----
-- name: Copy sshd_config
-  copy: src=sshd_config dest=/etc/ssh/sshd_config mode=0600
-
-- name: Configure ssh port
-  template: src=sshd.socket dest=/etc/systemd/system/sshd.socket
