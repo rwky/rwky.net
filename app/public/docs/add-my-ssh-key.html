@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adding my SSH keys</title>
+    <meta charset="utf-8"  />
+</head>
+
+<body>
+<h1>Adding my SSH keys</h1>
+To add my keys to your server, connect via SSH and become root, then run one of the following:
+<p>
+<h2>Using curl</h2>
+<code>
+    mkdir /root/.ssh && \<br>
+    curl -s https://www.rwky.net/id_rsa.pub >> /root/.ssh/authorized_keys</code>
+</code>
+</p>
+<p>
+<h2>Using wget</h2>
+<code>
+    mkdir /root/.ssh && \<br>
+    wget -qO - https://www.rwky.net/id_rsa.pub >> /root/.ssh/authorized_keys</code>
+</code>
+</p>
+If your server doesn't allow root ssh access then change <code>/root</code> to be the path to
+the home directory of the server I will connect to SSH as 
+(e.g. <code>/home/ubuntu</code>, <code>/home/centos</code>, <code>/home/ec2-user</code> etc.)
+</body>
+</html>
