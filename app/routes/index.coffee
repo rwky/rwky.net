@@ -99,7 +99,9 @@ module.exports = (app) ->
         next()
     
     app.post '/ping/' + app.config.ping_token, (req, res, next) ->
-        msg = if req.body.text? then req.body.text else req.body.attachments?[0]?.text
+        if req.body.payload?
+            msg = JSON.parse(req.body.payload).text
+        else if req.body.text? then msg = req.body.text else msg = req.body.attachments?[0]?.text
         ping msg, (err, httpResponse, body) ->
             if err or body isnt 'ok'
                 console.error err
