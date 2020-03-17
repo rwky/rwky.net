@@ -3,10 +3,22 @@ module.exports = (app) ->
     .createTransport require('nodemailer-smtp-transport')(app.config.smtp)
     stripe = require('stripe')(app.config.stripe)
     async = require 'async'
-    request = require 'request'
+    https = require 'https'
 
     ping = (msg, cb) ->
-        request.post app.config.slack_url, { json: true, body: { text: msg } }, cb
+        body = ''
+        req = https.request app.config.slack_url, { 
+            method: 'POST', 
+            headers: { 'Content-Type': 'application/json'} 
+        }, (res) ->
+            res.on 'data', (chunk) ->
+                body += chunk
+            res.on 'end', ->
+                cb null, res, body
+        req.on 'err', (err) ->
+            cb err
+        req.write(JSON.stringify({ text: msg }))
+        req.end()
     
     app.get '/', (req, res) ->
         res.render 'index', bodyClass: 'index'
@@ -142,10 +154,21 @@ module.exports = (app) ->
                     headers: { "x-api-key": app.config.sms_api_key },
                     body: { msg: msg.slice(0, 100) }
                 }
-                request.post app.config.sms_url, ops, (err, httpResponse, body) ->
-                    if err then return c err
-                    unless body.status is 'queued' then return c body
-                    c()
+                body = ''
+                client = https.request app.config.sms_url, { 
+                    method: 'POST', 
+                    headers: {"x-api-key": app.config.sms_api_key, 'Content-Type': 'application/json'}
+                }, (res) ->
+                    res.on 'data', (chunk) ->
+                        body += chunk
+                    res.on 'end', ->
+                        body = JSON.parse(body)
+                        unless body.status is 'queued' then return c body
+                        c()
+                client.on 'err', (err) ->
+                    c err
+                client.write(JSON.stringify({ msg: msg.slice(0, 100) }))
+                client.end()
             retry (c) ->
                 ping msg, (err, httpResponse, body) ->
                     if err then return c err
