@@ -1,22 +1,22 @@
-{{>header}}
+{% include "header.html" %}
 <h1>Pay Online</h1>
 <noscript><b>Stripe and Paypal require Javascript enabled, please enable it to use this form</b><br></noscript>
 <div class="card">
     <div class="card-header">
         Pay with Credit/Debit card
     </div>
-    {{#stripeSession}}
+    {% if stripeSession %}
     <div class="alert alert-info">Redirecting you to stripe...</div>
     <input type="hidden" id="stripe-session" value="{{stripeSession}}" data-pk="{{stripePk}}">
-    {{/stripeSession}}
+    {% endif %}
     <div class="card-body">
-        {{#stripeErr}}
+        {% if stripeErr %}
         <div class="alert alert-danger">An error occurred please ensure you have completed the
         email, invoice number and amount fields, if this problem persists please email admin@rwky.net</div>
-        {{/stripeErr}}
-        {{#stripeSuccess}}
-            {{{stripeSuccess}}}
-        {{/stripeSuccess}}
+        {% endif %}
+        {% if stripeSuccess %}
+            {{ stripeSuccess | safe }}
+        {% endif %}
         <form action="/pay-online/stripe" method="post" id="stripe-form" role="form">
         <div class="row form-group">
             <label class="col-form-label col-sm-3" for="stripe-email">Email:</label>
@@ -35,7 +35,7 @@
             <div class="col-sm-4">
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <div class="input-group-text">{{{currencySym}}}</div>
+                        <div class="input-group-text">{{currencySym | safe}}</div>
                     </div>
                     <input class="form-control" type="text" id="stripe-amount" name="amount" value="{{amount}}">
                 </div>
@@ -47,7 +47,7 @@
         Powered by <a href="http://www.stripe.com" target="_blank">Stripe</a><br>
     </div>
 </div>
-{{#showPaypal}}
+{% if showPaypal %}
 <div class="card mt-2">
 <div class="card-header">
     Pay with Paypal
@@ -69,7 +69,7 @@
                 <div class="col-sm-4">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <div class="input-group-text">{{{currencySym}}}</div>
+                            <div class="input-group-text">{{currencySym | safe}}</div>
                         </div>
                         <input class="form-control" type="text" id="paypal-amount" name="amount" value="{{amount}}">
                     </div>
@@ -85,6 +85,6 @@
         </form>
     </div>
 </div>
-{{/showPaypal}}
+{% endif %}
 </div>
-{{>footer}}
+{% include "footer.html" %}

@@ -1,10 +1,5 @@
-rwky.net.komodoproject
-.komodotools/
 app/node_modules/
-.DS_Store
 private/
-app/public/js/main*.js
-app/public/css/main.css
-app/routes/*.js
-app/bower_components
 .vagrant
+app/version.js
+app/config
