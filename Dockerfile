@@ -1,4 +1,4 @@
-FROM phusion/passenger-customizable:1.0.9
+FROM phusion/passenger-customizable:1.0.10
 MAINTAINER Rowan Wookey <admin@rwky.net>
 RUN curl -sS -o node.sh https://deb.nodesource.com/setup_12.x && \
 bash node.sh && \
